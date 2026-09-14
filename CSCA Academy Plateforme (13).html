@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSCA Academy — Campus International Maroc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F3864;
+    --navy-ink:#16264A;
+    --gold:#B08D57;
+    --gold-soft:#E6D9C3;
+    --paper:#FAF7F1;
+    --paper-2:#F1EBDF;
+    --ink:#26241F;
+    --ink-soft:#6B6659;
+    --line:#DDD4C2;
+    --jade:#2F6F4E;
+    --rust:#A3402B;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    color:var(--navy-ink);
+    margin:0;
+  }
+
+  /* ---------- Shell ---------- */
+  .shell{
+    display:flex;
+    min-height:100vh;
+  }
+  .sidebar{
+    width:280px;
+    flex-shrink:0;
+    background:var(--navy);
+    color:#EFE9DC;
+    padding:32px 24px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .brand{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding-bottom:22px;
+    margin-bottom:22px;
+    border-bottom:1px solid rgba(239,233,220,.18);
+  }
+  .brand-mark{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:26px;
+    color:var(--gold-soft);
+    letter-spacing:.02em;
+  }
+  .brand-sub{
+    font-size:11px;
+    color:rgba(239,233,220,.6);
+    line-height:1.4;
+  }
+  .nav-group{margin-bottom:26px;}
+  .nav-label{
+    font-size:12px;
+    color:rgba(239,233,220,.5);
+    margin:0 0 10px 2px;
+  }
+  .nav-item{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    color:#EFE9DC;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    padding:9px 10px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    line-height:1.35;
+    border-left:2px solid transparent;
+  }
+  .nav-item:hover{background:rgba(239,233,220,.08);}
+  .nav-item.active{
+    background:rgba(239,233,220,.1);
+    border-left:2px solid var(--gold);
+    color:#fff;
+  }
+  .nav-item .n{
+    display:inline-block;
+    width:20px;
+    color:rgba(239,233,220,.45);
+    font-variant-numeric:tabular-nums;
+    font-size:12.5px;
+  }
+  .sidebar-foot{
+    margin-top:30px;
+    padding-top:18px;
+    border-top:1px solid rgba(239,233,220,.18);
+    font-size:11.5px;
+    color:rgba(239,233,220,.45);
+    line-height:1.6;
+  }
+
+  .main{
+    flex:1;
+    min-width:0;
+    padding:48px 56px 80px;
+    max-width:920px;
+  }
+  .eyebrow{
+    color:var(--gold);
+    font-size:13px;
+    margin-bottom:6px;
+  }
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- Home ---------- */
+  .home-hero{
+    padding-bottom:28px;
+    margin-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .home-hero h1{font-size:38px;font-weight:600;line-height:1.15;}
+  .home-hero p{
+    color:var(--ink-soft);
+    font-size:16px;
+    max-width:60ch;
+    margin-top:14px;
+    line-height:1.6;
+  }
+  .stat-row{display:flex;gap:36px;margin-top:26px;flex-wrap:wrap;}
+  .stat{border-left:2px solid var(--gold);padding-left:12px;}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--navy-ink);}
+  .stat span{font-size:12.5px;color:var(--ink-soft);}
+  .card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:8px;
+  }
+  .track-card{
+    border:1px solid var(--line);
+    background:#fff;
+    padding:20px 22px;
+    cursor:pointer;
+  }
+  .track-card:hover{border-color:var(--gold);}
+  .track-card h3{font-size:17px;font-weight:600;margin-bottom:6px;}
+  .track-card p{font-size:13.5px;color:var(--ink-soft);margin:0;line-height:1.5;}
+
+  .notice-box{
+    background:var(--paper-2);
+    border-left:3px solid var(--navy);
+    padding:14px 18px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin-bottom:32px;
+  }
+  .notice-box a{color:var(--navy);}
+  .list-note{
+    font-size:13px;color:var(--ink-soft);margin:0 0 18px;
+  }
+  .format-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin-top:4px;
+  }
+  .format-table th{
+    text-align:left;
+    background:var(--navy);
+    color:#fff;
+    font-weight:600;
+    font-size:12px;
+    padding:10px 14px;
+  }
+  .format-table td{
+    padding:10px 14px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .format-table tr:last-child td{border-bottom:none;}
+
+  /* ---------- Lesson list / viewer ---------- */
+  .subject-tag{
+    display:inline-block;
+    font-size:11.5px;
+    color:var(--navy);
+    background:var(--gold-soft);
+    padding:3px 9px;
+    margin-bottom:14px;
+  }
+  .lesson-list{border-top:1px solid var(--line);}
+  .lesson-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 4px;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+  }
+  .lesson-row:hover .lrow-title{color:var(--gold);}
+  .lrow-left{display:flex;gap:14px;align-items:baseline;}
+  .lrow-num{font-family:'Fraunces',serif;color:var(--ink-soft);font-size:14px;width:22px;}
+  .lrow-title{font-size:15.5px;font-weight:500;}
+  .lrow-meta{font-size:12.5px;color:var(--ink-soft);}
+
+  .lesson-body h2{font-size:26px;margin-bottom:4px;}
+  .lesson-body .lesson-kicker{color:var(--ink-soft);font-size:13.5px;margin-bottom:22px;}
+  .lesson-content{font-size:15.5px;line-height:1.75;max-width:68ch;}
+  .lesson-content h4{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--navy);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin:26px 0 8px;
+  }
+  .lesson-content p{margin:0 0 14px;}
+  .lesson-content ul{margin:0 0 14px;padding-left:20px;}
+  .lesson-content li{margin-bottom:6px;}
+  .lesson-content .example-box{
+    background:var(--paper-2);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    margin:16px 0;
+    font-size:14.5px;
+  }
+  .back-link{
+    background:none;border:none;color:var(--ink-soft);cursor:pointer;
+    font-size:13.5px;margin-bottom:22px;padding:0;font-family:'Inter',sans-serif;
+  }
+  .back-link:hover{color:var(--navy);}
+
+  /* ---------- Exams ---------- */
+  .exam-card{
+    display:flex;justify-content:space-between;align-items:center;
+    border:1px solid var(--line);background:#fff;
+    padding:18px 22px;margin-bottom:12px;
+  }
+  .exam-card h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+  .exam-card p{font-size:13px;color:var(--ink-soft);margin:0;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:var(--radius);
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--navy-ink);}
+  .btn.ghost{
+    background:none;border:1px solid var(--navy);color:var(--navy);
+  }
+  .btn.ghost:hover{background:var(--navy);color:#fff;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  .quiz-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:6px;
+  }
+  .quiz-progress{font-size:13px;color:var(--ink-soft);}
+  .progress-bar{height:3px;background:var(--line);margin-bottom:32px;}
+  .progress-fill{height:100%;background:var(--gold);transition:width .25s ease;}
+  .q-subject{color:var(--gold);font-size:12.5px;margin-bottom:8px;}
+  .q-text{font-size:19px;line-height:1.5;margin-bottom:24px;max-width:62ch;font-weight:500;}
+  .options{display:flex;flex-direction:column;gap:10px;max-width:62ch;}
+  .opt{
+    text-align:left;
+    border:1px solid var(--line);
+    background:#fff;
+    padding:13px 16px;
+    font-size:14.5px;
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    display:flex;gap:12px;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt .k{color:var(--ink-soft);font-weight:600;}
+  .opt.correct{border-color:var(--jade);background:#F2F7F4;}
+  .opt.incorrect{border-color:var(--rust);background:#FBF1EE;}
+  .opt:disabled{cursor:default;}
+  .quiz-nav{margin-top:28px;display:flex;gap:12px;}
+  .quiz-timer{
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    color:var(--navy-ink);
+    background:var(--gold-soft);
+    padding:4px 11px;
+    font-size:13px;
+  }
+  .quiz-timer.low{background:#FBE4DC;color:var(--rust);}
+
+  .result-box{text-align:center;padding:50px 20px;}
+  .result-score{font-family:'Fraunces',serif;font-size:56px;color:var(--navy-ink);}
+  .result-label{color:var(--ink-soft);font-size:14px;margin-top:6px;}
+  .result-detail{
+    margin:28px auto 0;max-width:480px;text-align:left;
+    border-top:1px solid var(--line);
+  }
+  .result-row{
+    display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;
+  }
+  .result-row .ok{color:var(--jade);}
+  .result-row .no{color:var(--rust);}
+
+  @media(max-width:820px){
+    .shell{flex-direction:column;}
+    .sidebar{width:100%;height:auto;position:relative;}
+    .main{padding:32px 22px 60px;}
+    .card-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Lock screen ---------- */
+  #lock-screen{
+    position:fixed;inset:0;
+    background:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    z-index:100;
+  }
+  .lock-box{
+    background:var(--paper);
+    padding:44px 40px;
+    width:340px;
+    max-width:88vw;
+    text-align:center;
+    border-top:3px solid var(--gold);
+  }
+  .lock-box .brand-mark{color:var(--navy-ink);font-size:24px;display:block;margin-bottom:4px;}
+  .lock-box p{color:var(--ink-soft);font-size:13px;margin:0 0 24px;}
+  .lock-box input{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    background:#fff;
+    text-align:center;
+    letter-spacing:.05em;
+    margin-bottom:12px;
+  }
+  .lock-box input:focus{outline:none;border-color:var(--gold);}
+  .lock-box .btn{width:100%;padding:12px;}
+  .lock-error{
+    color:var(--rust);font-size:12.5px;
+    height:16px;margin-bottom:10px;
+  }
+  body.locked .shell{display:none;}
+
+  /* ---------- Registration gate ---------- */
+  #gate{
+    position:fixed;inset:0;
+    background:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    z-index:100;
+    overflow-y:auto;
+    padding:30px 16px;
+  }
+  .gate-box{
+    background:var(--paper);
+    padding:38px 36px 30px;
+    width:480px;
+    max-width:92vw;
+    border-top:3px solid var(--gold);
+  }
+  .gate-box .brand-mark{color:var(--navy-ink);font-size:24px;display:block;margin-bottom:4px;}
+  .gate-box .gate-sub{color:var(--ink-soft);font-size:13px;margin:0 0 26px;}
+  .form-row{margin-bottom:14px;}
+  .form-row label{
+    display:block;font-size:12.5px;font-weight:600;color:var(--navy-ink);
+    margin-bottom:5px;
+  }
+  .form-row input,.form-row select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  .form-row input:focus,.form-row select:focus{outline:none;border-color:var(--gold);}
+  .form-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .track-toggle{display:flex;gap:10px;margin-bottom:18px;}
+  .track-opt{
+    flex:1;text-align:center;
+    border:1px solid var(--line);
+    padding:11px 8px;
+    font-size:13px;
+    cursor:pointer;
+    background:#fff;
+  }
+  .track-opt.active{border-color:var(--gold);background:var(--gold-soft);color:var(--navy-ink);font-weight:600;}
+  .grade-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+  .grade-fields.two{grid-template-columns:1fr 1fr;}
+  .gate-error{color:var(--rust);font-size:12.5px;min-height:16px;margin-bottom:6px;}
+  .gate-box .btn{width:100%;padding:13px;margin-top:8px;}
+
+  /* ---------- Result / thank-you message ---------- */
+  .result-msg-box{text-align:center;}
+  .result-msg-box .check{
+    width:46px;height:46px;border-radius:50%;
+    background:var(--jade);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;margin:0 auto 18px;
+  }
+  .result-msg-box h2{font-size:21px;margin-bottom:6px;}
+  .result-msg-box .avg-line{color:var(--ink-soft);font-size:13.5px;margin-bottom:22px;}
+  .rank-badge{
+    display:inline-block;
+    background:var(--navy);color:#fff;
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    padding:10px 22px;
+    margin-bottom:18px;
+  }
+  .result-msg-box .msg-text{
+    font-size:14.5px;line-height:1.7;color:var(--ink);
+    text-align:left;
+    background:var(--paper-2);
+    padding:16px 20px;
+    margin-bottom:22px;
+  }
+  .result-msg-box .fine-print{
+    font-size:11.5px;color:var(--ink-soft);margin-bottom:24px;
+  }
+
+  /* ---------- Admin leads view ---------- */
+  .leads-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:16px;}
+  .leads-table th{background:var(--navy);color:#fff;text-align:left;padding:8px 10px;font-size:11px;}
+  .leads-table td{padding:8px 10px;border-bottom:1px solid var(--line);background:#fff;}
+  .leads-empty{color:var(--ink-soft);font-size:13.5px;padding:20px 0;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="locked">
+
+<!-- ============ REGISTRATION GATE ============ -->
+<div id="gate">
+  <div class="gate-box" id="gate-form-box">
+    <span class="brand-mark">CSCA Academy</span>
+    <p class="gate-sub">Campus International Maroc — remplis ce formulaire pour accéder aux leçons et examens.</p>
+
+    <div class="form-2col">
+      <div class="form-row"><label>Nom</label><input id="f-nom" type="text"></div>
+      <div class="form-row"><label>Prénom</label><input id="f-prenom" type="text"></div>
+    </div>
+    <div class="form-2col">
+      <div class="form-row"><label>Âge</label><input id="f-age" type="number" min="14" max="30"></div>
+      <div class="form-row"><label>Note de bac (/20)</label><input id="f-bac" type="number" min="0" max="20" step="0.01"></div>
+    </div>
+
+    <div class="form-row">
+      <label>Filière</label>
+      <div class="track-toggle">
+        <div class="track-opt active" id="opt-sci" onclick="setTrack('scientifique')">Scientifique</div>
+        <div class="track-opt" id="opt-lit" onclick="setTrack('lettres')">Lettres / Économie</div>
+      </div>
+    </div>
+
+    <div id="grades-sci" class="grade-fields">
+      <div class="form-row" style="margin-bottom:0;"><label>Maths (/20)</label><input id="f-math" type="number" min="0" max="20" step="0.01"></div>
+      <div class="form-row" style="margin-bottom:0;"><label>Physique (/20)</label><input id="f-phys" type="number" min="0" max="20" step="0.01"></div>
+      <div class="form-row" style="margin-bottom:0;"><label>Anglais (/20)</label><input id="f-ang-sci" type="number" min="0" max="20" step="0.01"></div>
+    </div>
+    <div id="grades-lit" class="grade-fields two" style="display:none;">
+      <div class="form-row" style="margin-bottom:0;"><label>Anglais (/20)</label><input id="f-ang-lit" type="number" min="0" max="20" step="0.01"></div>
+      <div class="form-row" style="margin-bottom:0;"><label>Maths (/20)</label><input id="f-math-lit" type="number" min="0" max="20" step="0.01"></div>
+    </div>
+
+    <div class="form-2col">
+      <div class="form-row"><label>Gmail</label><input id="f-gmail" type="email" placeholder="nom@gmail.com"></div>
+      <div class="form-row"><label>Numéro de téléphone</label><input id="f-tel" type="tel" placeholder="06 00 00 00 00"></div>
+    </div>
+
+    <p class="gate-error" id="gate-error"></p>
+    <button class="btn" onclick="submitForm()">Voir mon orientation</button>
+  </div>
+
+  <div class="gate-box" id="gate-result-box" style="display:none;">
+    <div class="result-msg-box" id="result-msg"></div>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <nav class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">CSCA Academy</span>
+    </div>
+    <div class="brand-sub">Campus International Maroc<br>Préparation à l'examen CSCA — Licence 2026</div>
+
+    <div class="nav-group" style="margin-top:26px;">
+      <p class="nav-label">Vue d'ensemble</p>
+      <button class="nav-item active" data-view="home"><span class="n">—</span>Accueil</button>
+    </div>
+
+    <div class="nav-group">
+      <p class="nav-label">Leçons</p>
+      <div id="nav-lessons"></div>
+    </div>
+
+    <div class="nav-group">
+      <p class="nav-label">Examens blancs</p>
+      <div id="nav-exams"></div>
+    </div>
+
+    <div class="nav-group">
+      <p class="nav-label">Équipe</p>
+      <button class="nav-item" onclick="openLeadsAdmin()"><span class="n">—</span>Suivi des inscriptions</button>
+    </div>
+
+    <div class="sidebar-foot">
+      Contenu éditable — voir les tableaux <code>LESSONS</code> et <code>EXAMS</code> en haut du fichier HTML pour ajouter tes propres leçons et questions.
+    </div>
+  </nav>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <!-- ---- HOME ---- -->
+    <section class="view active" id="view-home">
+      <div class="home-hero">
+        <p class="eyebrow">Plateforme de préparation</p>
+        <h1>Prépare le CSCA sans stress.</h1>
+        <p>Le China Scholastic Competency Assessment évalue le chinois académique, les mathématiques et les sciences. Cette plateforme réunit les leçons de base et des examens blancs pour préparer les candidats marocains à la licence 2026.</p>
+        <div class="stat-row">
+          <div class="stat"><b id="stat-lessons">0</b><span>Leçons disponibles</span></div>
+          <div class="stat"><b id="stat-exams">0</b><span>Examens blancs</span></div>
+          <div class="stat"><b>3</b><span>Matières couvertes</span></div>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <b>À savoir :</b> les leçons et examens de cette plateforme sont des exercices d'entraînement créés pour couvrir le programme officiel du CSCA — ce ne sont pas de vraies questions d'examen (non publiées officiellement). Le seul mock test 100% officiel est publié gratuitement sur <a href="https://csca.cn" target="_blank" rel="noopener">csca.cn</a> une semaine avant chaque session.
+      </div>
+
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:14px;">Format officiel de l'examen CSCA</h3>
+      <table class="format-table">
+        <thead>
+          <tr><th>Épreuve</th><th>Durée</th><th>Questions</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Chinois spécialisé (Lettres ou Sciences)</td><td>90 min</td><td>100 QCM</td><td>Selon filière</td></tr>
+          <tr><td>Mathématiques</td><td>60 min</td><td>48 QCM</td><td>Obligatoire</td></tr>
+          <tr><td>Physique</td><td>60 min</td><td>48 QCM</td><td>Optionnel selon filière</td></tr>
+          <tr><td>Chimie</td><td>60 min</td><td>48 QCM</td><td>Optionnel selon filière</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:15px;font-weight:600;margin:28px 0 14px;">Parcours</h3>
+      <div class="card-grid" id="home-tracks"></div>
+    </section>
+
+    <!-- ---- LESSON LIST ---- -->
+    <section class="view" id="view-lesson-list">
+      <p class="eyebrow">Leçons</p>
+      <h1 style="font-size:30px;margin-bottom:6px;">Toutes les leçons</h1>
+      <p class="list-note">Exercices d'entraînement alignés sur le syllabus officiel CSCA — pas des documents officiels.</p>
+      <div class="lesson-list" id="lesson-list"></div>
+    </section>
+
+    <!-- ---- LESSON DETAIL ---- -->
+    <section class="view" id="view-lesson-detail">
+      <button class="back-link" onclick="showView('lesson-list')">← Retour aux leçons</button>
+      <div class="lesson-body" id="lesson-detail"></div>
+    </section>
+
+    <!-- ---- EXAM LIST ---- -->
+    <section class="view" id="view-exam-list">
+      <p class="eyebrow">Examens blancs</p>
+      <h1 style="font-size:30px;margin-bottom:6px;">Choisis un examen</h1>
+      <p class="list-note">Chronométrés au même rythme que l'examen réel. Ce sont des exercices d'entraînement, pas d'anciennes épreuves officielles.</p>
+      <div id="exam-list"></div>
+    </section>
+
+    <!-- ---- EXAM RUNNER ---- -->
+    <section class="view" id="view-exam-runner">
+      <div id="exam-runner"></div>
+    </section>
+
+    <!-- ---- EXAM RESULT ---- -->
+    <section class="view" id="view-exam-result">
+      <div id="exam-result"></div>
+    </section>
+
+    <!-- ---- ADMIN : LEADS ---- -->
+    <section class="view" id="view-admin">
+      <p class="eyebrow">Équipe</p>
+      <h1 style="font-size:30px;margin-bottom:6px;">Suivi des inscriptions</h1>
+      <p class="list-note">Le Google Sheet relié à la plateforme est la source complète et partagée. Ce tableau n'affiche que les inscriptions de cette session de navigateur — utile pour un contrôle rapide ou un export CSV ponctuel.</p>
+      <button class="btn ghost" onclick="exportLeadsCSV()" style="margin-bottom:18px;">Télécharger en CSV</button>
+      <div id="leads-table-wrap"></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   ACCÈS ÉQUIPE — mot de passe pour consulter les inscriptions (leads).
+   Protection simple côté client, visible dans le code source.
+   ===================================================================== */
+const ADMIN_PASSWORD = "campus2026";
+
+/* =====================================================================
+   GOOGLE SHEET — envoi automatique de chaque inscription.
+   1. Ouvre le Google Sheet fourni (voir message de livraison).
+   2. Extensions > Apps Script > colle le code fourni > Déployer >
+      Nouveau déploiement > Application Web > accès "Tous".
+   3. Colle l'URL obtenue ci-dessous.
+   ===================================================================== */
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwvU15fY19251YqVaqYggXKJ0L07OJvsvqG6AioiVf2tpwMdLcAXAcvCCH2AFXAuKni/exec";
+
+function sendToSheet(lead){
+  if(!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.indexOf('PASTE_') === 0) return;
+  fetch(SHEET_WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(lead)
+  }).catch(()=>{ /* échec silencieux : le CSV local reste le filet de sécurité */ });
+}
+
+/* =====================================================================
+   FORMULAIRE ÉTUDIANT — filière + notes + calcul d'orientation
+   Seuils modifiables ici :
+   ===================================================================== */
+const RANK_TIERS = [
+  { min: 15, label: "1 – 100",  tone: "excellent" },
+  { min: 13, label: "80 – 250", tone: "bon" },
+  { min: 10, label: "130 – 300", tone: "correct" }
+];
+let currentTrack = "scientifique";
+const LEADS = []; // copie locale pour la session en cours (voir note export CSV) — la source de vérité est le Google Sheet
+
+function setTrack(track){
+  currentTrack = track;
+  document.getElementById('opt-sci').classList.toggle('active', track==='scientifique');
+  document.getElementById('opt-lit').classList.toggle('active', track==='lettres');
+  document.getElementById('grades-sci').style.display = track==='scientifique' ? 'grid' : 'none';
+  document.getElementById('grades-lit').style.display = track==='lettres' ? 'grid' : 'none';
+}
+
+function submitForm(){
+  const nom = document.getElementById('f-nom').value.trim();
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const age = document.getElementById('f-age').value;
+  const bac = parseFloat(document.getElementById('f-bac').value);
+  const gmail = document.getElementById('f-gmail').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const error = document.getElementById('gate-error');
+
+  let notes = {};
+  if(currentTrack === 'scientifique'){
+    notes.math = parseFloat(document.getElementById('f-math').value);
+    notes.physique = parseFloat(document.getElementById('f-phys').value);
+    notes.anglais = parseFloat(document.getElementById('f-ang-sci').value);
+  } else {
+    notes.anglais = parseFloat(document.getElementById('f-ang-lit').value);
+    notes.math = parseFloat(document.getElementById('f-math-lit').value);
+  }
+
+  const noteValues = Object.values(notes);
+  if(!nom || !prenom || !age || isNaN(bac) || !gmail || !tel || noteValues.some(isNaN)){
+    error.textContent = "Merci de remplir tous les champs avant de continuer.";
+    return;
+  }
+  error.textContent = "";
+
+  const avg = (noteValues.reduce((a,b)=>a+b,0) + bac) / (noteValues.length + 1);
+  const tier = RANK_TIERS.find(t => avg >= t.min);
+
+  const lead = {
+    date: new Date().toLocaleString('fr-FR'),
+    nom, prenom, age, filiere: currentTrack, ...notes, bac,
+    gmail, tel, avg: avg.toFixed(2),
+    rank: tier ? tier.label : "300+"
+  };
+  LEADS.push(lead);
+  sendToSheet(lead);
+
+  showResultMessage(prenom, avg, tier);
+}
+
+function showResultMessage(prenom, avg, tier){
+  document.getElementById('gate-form-box').style.display = 'none';
+  const box = document.getElementById('gate-result-box');
+  box.style.display = 'block';
+
+  let bodyText, rankLabel;
+  if(tier){
+    rankLabel = tier.label;
+    bodyText = `Merci ${prenom}, ton dossier a bien été reçu. Avec une moyenne de ${avg.toFixed(2)}/20, ton profil académique te permet de viser des universités chinoises partenaires classées entre le rang <b>${rankLabel}</b>. Un conseiller Campus International Maroc te contactera prochainement pour affiner ton orientation et démarrer ton dossier de candidature.`;
+  } else {
+    rankLabel = "à évaluer avec un conseiller";
+    bodyText = `Merci ${prenom}, ton dossier a bien été reçu. Avec une moyenne de ${avg.toFixed(2)}/20, nous allons étudier ton profil avec un conseiller pour identifier les meilleures options adaptées à ton niveau — certaines universités partenaires proposent des années préparatoires pour renforcer ton dossier.`;
+  }
+
+  document.getElementById('result-msg').innerHTML = `
+    <div class="check">✓</div>
+    <h2>Merci pour ton inscription, ${prenom} !</h2>
+    <p class="avg-line">Moyenne calculée : ${avg.toFixed(2)} / 20</p>
+    ${tier ? `<div class="rank-badge">Rang ${rankLabel}</div>` : ''}
+    <div class="msg-text">${bodyText}</div>
+    <p class="fine-print">Estimation indicative donnée à titre d'orientation — l'admission définitive dépend du dossier complet, du CSCA et des critères propres à chaque université.</p>
+    <button class="btn" onclick="enterPlatform()">Accéder à la plateforme</button>
+  `;
+}
+
+function enterPlatform(){
+  document.body.classList.remove('locked');
+  document.getElementById('gate').style.display = 'none';
+}
+
+/* ---- accès équipe : consultation des inscriptions (leads) ---- */
+function openLeadsAdmin(){
+  const pass = prompt("Mot de passe équipe :");
+  if(pass !== ADMIN_PASSWORD){
+    if(pass !== null) alert("Mot de passe incorrect.");
+    return;
+  }
+  renderLeadsTable();
+  showView('admin');
+}
+
+function renderLeadsTable(){
+  const el = document.getElementById('leads-table-wrap');
+  if(LEADS.length === 0){
+    el.innerHTML = `<p class="leads-empty">Aucune inscription pour l'instant dans cette session du navigateur.</p>`;
+    return;
+  }
+  el.innerHTML = `
+    <table class="leads-table">
+      <thead><tr>
+        <th>Date</th><th>Nom</th><th>Prénom</th><th>Âge</th><th>Filière</th>
+        <th>Notes</th><th>Bac</th><th>Moyenne</th><th>Rang visé</th><th>Gmail</th><th>Tél.</th>
+      </tr></thead>
+      <tbody>
+        ${LEADS.map(l => `<tr>
+          <td>${l.date}</td><td>${l.nom}</td><td>${l.prenom}</td><td>${l.age}</td>
+          <td>${l.filiere==='scientifique'?'Scientifique':'Lettres/Éco'}</td>
+          <td>${l.filiere==='scientifique'?`M:${l.math} P:${l.physique} A:${l.anglais}`:`A:${l.anglais} M:${l.math}`}</td>
+          <td>${l.bac}</td><td>${l.avg}</td><td>${l.rank}</td><td>${l.gmail}</td><td>${l.tel}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function exportLeadsCSV(){
+  if(LEADS.length === 0){ alert("Aucune inscription à exporter."); return; }
+  const headers = ["Date","Nom","Prénom","Âge","Filière","Maths","Physique","Anglais","Bac","Moyenne","Rang visé","Gmail","Téléphone"];
+  const rows = LEADS.map(l => [
+    l.date, l.nom, l.prenom, l.age, l.filiere,
+    l.math ?? "", l.physique ?? "", l.anglais ?? "",
+    l.bac, l.avg, l.rank, l.gmail, l.tel
+  ]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `inscriptions_csca_academy_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+}
+
+/* =====================================================================
+   CONTENU — modifie/complète ici. Tout est copier-coller.
+   ===================================================================== */
+
+/* ---- LEÇONS ----
+   Chaque leçon = { id, subject, title, minutes, html }
+   "html" accepte : <p>, <ul><li>, <h4> (sous-titres), et
+   <div class="example-box">...</div> pour un encadré d'exemple. */
+let LESSONS = [
+  {
+    id: "math-1",
+    subject: "Mathématiques",
+    title: "Équations et fonctions du second degré",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Le CSCA teste la manipulation des équations du second degré (ax² + bx + c = 0) et la lecture de fonctions associées. Ce socle revient dans une grande partie des questions de mathématiques.</p>
+      <ul>
+        <li>Forme canonique et discriminant Δ = b² − 4ac</li>
+        <li>Nombre de solutions selon le signe de Δ</li>
+        <li>Somme et produit des racines (relations de Viète)</li>
+        <li>Lecture du sommet et du sens de variation sur un graphique</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Résoudre x² − 5x + 6 = 0.<br>Δ = 25 − 24 = 1 → deux solutions : x = 2 et x = 3.</div>
+      <h4>Erreurs fréquentes</h4>
+      <p>Oublier de vérifier le signe de Δ avant de conclure sur le nombre de solutions, et confondre somme (−b/a) et produit (c/a) des racines.</p>
+    `
+  },
+  {
+    id: "math-2",
+    subject: "Mathématiques",
+    title: "Probabilités et statistiques de base",
+    minutes: 15,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Les questions portent sur le calcul de probabilités simples, la moyenne, la médiane et la lecture de tableaux de données.</p>
+      <ul>
+        <li>Probabilité = cas favorables / cas possibles</li>
+        <li>Événements indépendants : P(A et B) = P(A) × P(B)</li>
+        <li>Moyenne pondérée à partir d'un tableau d'effectifs</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Un sac contient 4 boules rouges et 6 boules bleues. P(rouge) = 4/10 = 0,4.</div>
+    `
+  },
+  {
+    id: "phys-1",
+    subject: "Physique",
+    title: "Mécanique — mouvement et forces",
+    minutes: 20,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Notions de base sur le mouvement rectiligne, la vitesse, l'accélération et les lois de Newton — fréquemment testées dans la partie physique du CSCA.</p>
+      <ul>
+        <li>Vitesse moyenne = distance / temps</li>
+        <li>Deuxième loi de Newton : F = m × a</li>
+        <li>Poids P = m × g (g ≈ 9,8 m/s² sur Terre)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Un objet de 2 kg subit une force de 10 N. Son accélération : a = F/m = 10/2 = 5 m/s².</div>
+    `
+  },
+  {
+    id: "chem-1",
+    subject: "Chimie",
+    title: "Structure de l'atome et tableau périodique",
+    minutes: 16,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Composition de l'atome, notion d'élément chimique et lecture du tableau périodique — base pour les questions de chimie générale.</p>
+      <ul>
+        <li>Atome = protons + neutrons (noyau) + électrons</li>
+        <li>Numéro atomique Z = nombre de protons</li>
+        <li>Colonnes du tableau = familles chimiques (mêmes propriétés)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Le carbone (Z = 6) possède 6 protons et 6 électrons à l'état neutre.</div>
+    `
+  },
+  {
+    id: "chin-1",
+    subject: "Chinois académique",
+    title: "Vocabulaire académique de base (HSK 3–4)",
+    minutes: 22,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Le CSCA teste un chinois académique — vocabulaire utilisé en contexte universitaire (cours, calcul, expérience) plus qu'un chinois conversationnel.</p>
+      <ul>
+        <li>数学 (shùxué) — mathématiques</li>
+        <li>物理 (wùlǐ) — physique</li>
+        <li>化学 (huàxué) — chimie</li>
+        <li>计算 (jìsuàn) — calculer</li>
+        <li>实验 (shíyàn) — expérience (laboratoire)</li>
+        <li>大学 (dàxué) — université</li>
+      </ul>
+      <div class="example-box"><b>Conseil :</b> Apprendre le vocabulaire par matière (maths, sciences, vie académique) plutôt qu'en liste isolée facilite la mémorisation pour le CSCA.</div>
+    `
+  },
+  {
+    id: "math-3",
+    subject: "Mathématiques",
+    title: "Suites numériques",
+    minutes: 17,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Les suites arithmétiques et géométriques reviennent régulièrement dans les questions de logique et de calcul du CSCA.</p>
+      <ul>
+        <li>Suite arithmétique : u(n+1) = u(n) + r → terme général u(n) = u(0) + n·r</li>
+        <li>Suite géométrique : u(n+1) = u(n) × q → terme général u(n) = u(0) × qⁿ</li>
+        <li>Somme des n premiers termes d'une suite arithmétique : n × (u(0) + u(n−1)) / 2</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Suite arithmétique de premier terme 3 et de raison 4 : 3, 7, 11, 15... Le 5ᵉ terme est 3 + 4×4 = 19.</div>
+      <h4>Erreurs fréquentes</h4>
+      <p>Confondre raison additive (arithmétique) et raison multiplicative (géométrique), surtout quand l'énoncé ne le précise pas explicitement.</p>
+    `
+  },
+  {
+    id: "math-4",
+    subject: "Mathématiques",
+    title: "Géométrie dans l'espace",
+    minutes: 19,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Calcul d'aires, de volumes et de périmètres des figures usuelles — une partie récurrente du CSCA, surtout pour les filières scientifiques.</p>
+      <ul>
+        <li>Volume du cube : côté³ — Volume du parallélépipède : L × l × h</li>
+        <li>Volume du cylindre : π × r² × h</li>
+        <li>Aire du cercle : π × r² — Périmètre du cercle : 2 × π × r</li>
+        <li>Théorème de Pythagore : a² + b² = c² (triangle rectangle)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Un cylindre de rayon 3 cm et de hauteur 10 cm a un volume de π × 3² × 10 ≈ 282,7 cm³.</div>
+    `
+  },
+  {
+    id: "phys-2",
+    subject: "Physique",
+    title: "Électricité de base",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Notions de circuit électrique simple, tension, intensité et résistance — base classique des questions de physique appliquée.</p>
+      <ul>
+        <li>Loi d'Ohm : U = R × I (tension = résistance × intensité)</li>
+        <li>Circuit série : l'intensité est la même partout, les tensions s'additionnent</li>
+        <li>Circuit parallèle : la tension est la même partout, les intensités s'additionnent</li>
+        <li>Puissance électrique : P = U × I</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Un circuit de résistance 5 Ω parcouru par un courant de 2 A a une tension U = 5 × 2 = 10 V.</div>
+    `
+  },
+  {
+    id: "phys-3",
+    subject: "Physique",
+    title: "Travail, énergie et puissance",
+    minutes: 17,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Relations entre force, déplacement, énergie et puissance — souvent combinées avec des questions de mécanique.</p>
+      <ul>
+        <li>Travail d'une force : W = F × d (force × distance parcourue dans la direction de la force)</li>
+        <li>Énergie cinétique : Ec = ½ × m × v²</li>
+        <li>Énergie potentielle de pesanteur : Ep = m × g × h</li>
+        <li>Puissance : P = W / t (travail par unité de temps)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Un objet de 4 kg à une vitesse de 3 m/s a une énergie cinétique Ec = ½ × 4 × 3² = 18 J.</div>
+    `
+  },
+  {
+    id: "chem-2",
+    subject: "Chimie",
+    title: "Réactions chimiques et équations",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Équilibrage d'équations chimiques et conservation de la matière — compétence de base testée en chimie.</p>
+      <ul>
+        <li>Une équation chimique doit être équilibrée : même nombre d'atomes de chaque élément de chaque côté</li>
+        <li>Réactifs (à gauche) → Produits (à droite)</li>
+        <li>La masse totale se conserve au cours d'une réaction (loi de Lavoisier)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Combustion du méthane : CH₄ + 2 O₂ → CO₂ + 2 H₂O (déjà équilibrée : 1 C, 4 H, 4 O de chaque côté).</div>
+    `
+  },
+  {
+    id: "chem-3",
+    subject: "Chimie",
+    title: "La mole et quantité de matière",
+    minutes: 16,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>La mole est l'unité de quantité de matière en chimie — indispensable pour les calculs de concentration et de masse molaire.</p>
+      <ul>
+        <li>1 mole = 6,022 × 10²³ entités (nombre d'Avogadro)</li>
+        <li>Masse molaire M en g/mol — n = m / M (quantité = masse / masse molaire)</li>
+        <li>Concentration molaire : C = n / V (mol/L)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> 18 g d'eau (M = 18 g/mol) correspondent à n = 18 / 18 = 1 mole.</div>
+    `
+  },
+  {
+    id: "chin-2",
+    subject: "Chinois académique",
+    title: "Grammaire académique de base",
+    minutes: 20,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Structures grammaticales fréquentes dans les énoncés académiques et scientifiques en chinois.</p>
+      <ul>
+        <li>因为...所以... (yīnwèi...suǒyǐ...) — parce que... donc... (cause / conséquence)</li>
+        <li>如果...就... (rúguǒ...jiù...) — si... alors... (condition)</li>
+        <li>比 (bǐ) — comparatif : A 比 B 大 = A est plus grand que B</li>
+        <li>被 (bèi) — forme passive : 问题被解决了 = le problème a été résolu</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> 如果温度上升，冰就会融化 = Si la température augmente, la glace fond.</div>
+    `
+  },
+  {
+    id: "chin-3",
+    subject: "Chinois académique",
+    title: "Compréhension de texte scientifique court",
+    minutes: 24,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Le CSCA inclut des passages courts (contexte scientifique ou universitaire) suivis de questions de compréhension.</p>
+      <ul>
+        <li>Repérer d'abord le sujet général du texte (souvent dans la première phrase)</li>
+        <li>Identifier les mots de liaison (因为, 但是, 所以) pour suivre la logique du texte</li>
+        <li>Ne pas traduire mot à mot — chercher le sens global de chaque phrase</li>
+      </ul>
+      <div class="example-box"><b>Conseil :</b> Lire d'abord les questions avant le texte permet de cibler directement les informations à chercher, et de gagner du temps le jour de l'examen.</div>
+    `
+  },
+  {
+    id: "math-5",
+    subject: "Mathématiques",
+    title: "Fonctions et représentations graphiques",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Savoir lire et interpréter le graphique d'une fonction est testé régulièrement — variations, minimum/maximum, intersections avec les axes.</p>
+      <ul>
+        <li>Fonction croissante : le graphique monte quand x augmente — décroissante : il descend</li>
+        <li>Le point où la courbe coupe l'axe des x est une solution de f(x) = 0</li>
+        <li>Pour une fonction affine f(x) = ax + b : a est la pente, b l'ordonnée à l'origine</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> f(x) = 2x + 1 coupe l'axe des y en (0, 1) et a une pente de 2 (la fonction croît de 2 quand x augmente de 1).</div>
+    `
+  },
+  {
+    id: "math-6",
+    subject: "Mathématiques",
+    title: "Trigonométrie de base",
+    minutes: 20,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Les rapports trigonométriques dans un triangle rectangle reviennent dans les questions de géométrie appliquée.</p>
+      <ul>
+        <li>sin(angle) = côté opposé / hypoténuse</li>
+        <li>cos(angle) = côté adjacent / hypoténuse</li>
+        <li>tan(angle) = côté opposé / côté adjacent</li>
+        <li>Valeurs à connaître : sin(30°) = 0,5 · cos(60°) = 0,5 · sin(90°) = 1</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Dans un triangle rectangle d'hypoténuse 10 cm et d'angle 30°, le côté opposé = 10 × sin(30°) = 5 cm.</div>
+    `
+  },
+  {
+    id: "phys-4",
+    subject: "Physique",
+    title: "Optique et ondes de base",
+    minutes: 17,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Notions élémentaires de propagation de la lumière et des ondes — fréquentes dans les QCM de physique générale.</p>
+      <ul>
+        <li>La lumière se propage en ligne droite dans un milieu homogène</li>
+        <li>Réflexion : angle d'incidence = angle de réflexion</li>
+        <li>Une onde est caractérisée par sa fréquence f (Hz), sa période T = 1/f, et sa longueur d'onde λ</li>
+        <li>Vitesse de propagation : v = λ × f</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Une onde de fréquence 50 Hz et de longueur d'onde 2 m se propage à v = 2 × 50 = 100 m/s.</div>
+    `
+  },
+  {
+    id: "phys-5",
+    subject: "Physique",
+    title: "Thermodynamique de base",
+    minutes: 16,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Relations simples entre chaleur, température et changement d'état — souvent combinées avec des questions de chimie.</p>
+      <ul>
+        <li>Quantité de chaleur : Q = m × c × ΔT (masse × capacité thermique × variation de température)</li>
+        <li>La température se mesure en °C ou en Kelvin : T(K) = T(°C) + 273</li>
+        <li>Un changement d'état (fusion, vaporisation) se fait à température constante</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> 25 °C correspond à 25 + 273 = 298 K.</div>
+    `
+  },
+  {
+    id: "chem-4",
+    subject: "Chimie",
+    title: "Acides, bases et pH",
+    minutes: 17,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>L'échelle de pH et la distinction acide / base est une base classique de chimie générale testée au CSCA.</p>
+      <ul>
+        <li>Échelle de pH : de 0 à 14</li>
+        <li>pH &lt; 7 : solution acide — pH = 7 : neutre — pH &gt; 7 : basique</li>
+        <li>Plus le pH est bas, plus la solution est acide</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Le jus de citron (pH ≈ 2) est acide ; l'eau pure (pH = 7) est neutre ; la soude (pH ≈ 13) est basique.</div>
+    `
+  },
+  {
+    id: "chem-5",
+    subject: "Chimie",
+    title: "États de la matière et changements d'état",
+    minutes: 15,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Les trois états de la matière et le vocabulaire des transitions entre états sont régulièrement testés.</p>
+      <ul>
+        <li>Solide → Liquide : fusion — Liquide → Solide : solidification</li>
+        <li>Liquide → Gaz : vaporisation — Gaz → Liquide : liquéfaction</li>
+        <li>Solide → Gaz directement : sublimation</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> L'eau passe de solide (glace) à liquide par fusion à 0 °C, puis de liquide à gaz par vaporisation à 100 °C.</div>
+    `
+  },
+  {
+    id: "chin-4",
+    subject: "Chinois académique",
+    title: "Nombres, unités et mesures",
+    minutes: 15,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Vocabulaire chiffré fréquent dans les énoncés de maths et de sciences en chinois.</p>
+      <ul>
+        <li>百分之 (bǎifēnzhī) — pourcentage : 百分之五十 = 50%</li>
+        <li>公斤 (gōngjīn) — kilogramme · 米 (mǐ) — mètre · 秒 (miǎo) — seconde</li>
+        <li>面积 (miànjī) — surface · 体积 (tǐjī) — volume · 温度 (wēndù) — température</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> 这个物体的体积是十立方米 = « Le volume de cet objet est de dix mètres cubes. »</div>
+    `
+  },
+  {
+    id: "chin-5",
+    subject: "Chinois académique",
+    title: "Rédaction académique courte",
+    minutes: 22,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Certaines universités demandent une courte réponse rédigée en chinois en plus du QCM — structure simple à maîtriser.</p>
+      <ul>
+        <li>Commencer par une phrase d'introduction claire qui répond directement à la question</li>
+        <li>Utiliser des connecteurs logiques : 首先 (d'abord), 然后 (ensuite), 最后 (enfin)</li>
+        <li>Terminer par une phrase de conclusion courte, sans introduire de nouvelle idée</li>
+      </ul>
+      <div class="example-box"><b>Conseil :</b> Mieux vaut une réponse courte, claire et bien structurée qu'une réponse longue avec des erreurs de grammaire.</div>
+    `
+  },
+  {
+    id: "math-7",
+    subject: "Mathématiques",
+    title: "Vecteurs (syllabus officiel CSCA)",
+    minutes: 19,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Les vecteurs figurent explicitement dans le syllabus officiel CSCA (rubrique « Vectors »). Notion de base pour la géométrie et la physique.</p>
+      <ul>
+        <li>Coordonnées du vecteur AB : (xB − xA, yB − yA)</li>
+        <li>Norme (longueur) d'un vecteur (x, y) : √(x² + y²)</li>
+        <li>Somme de deux vecteurs : addition coordonnée par coordonnée</li>
+        <li>Vecteurs colinéaires : l'un est un multiple de l'autre</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> A(1,2) et B(4,6) → AB = (4−1, 6−2) = (3, 4), de norme √(3²+4²) = 5.</div>
+    `
+  },
+  {
+    id: "math-8",
+    subject: "Mathématiques",
+    title: "Nombres complexes (syllabus officiel CSCA)",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Autre rubrique explicite du syllabus officiel (« Complex Numbers »). Base à maîtriser pour les filières scientifiques.</p>
+      <ul>
+        <li>Un nombre complexe s'écrit z = a + bi, avec i² = −1</li>
+        <li>a = partie réelle, b = partie imaginaire</li>
+        <li>Module de z : |z| = √(a² + b²)</li>
+        <li>Conjugué de z = a + bi : z̄ = a − bi</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> z = 3 + 4i a pour module √(9+16) = √25 = 5, et pour conjugué 3 − 4i.</div>
+    `
+  },
+  {
+    id: "math-9",
+    subject: "Mathématiques",
+    title: "Statistiques : moyenne, variance, loi normale",
+    minutes: 20,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Rubrique « Probability & Statistics » du syllabus officiel — moyenne, dispersion et loi normale.</p>
+      <ul>
+        <li>Moyenne : somme des valeurs / nombre de valeurs</li>
+        <li>Variance : moyenne des écarts au carré par rapport à la moyenne — mesure la dispersion</li>
+        <li>Écart-type : racine carrée de la variance, dans la même unité que les données</li>
+        <li>Loi normale : distribution symétrique en forme de cloche, centrée sur la moyenne</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Deux classes ont la même moyenne de 12, mais des écarts-types différents : la classe avec l'écart-type le plus élevé a des notes plus dispersées autour de 12.</div>
+    `
+  },
+  {
+    id: "phys-6",
+    subject: "Physique",
+    title: "Mouvement circulaire et oscillations harmoniques",
+    minutes: 19,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Rubrique explicite du syllabus officiel CSCA (« Circular Motion; Simple Harmonic Motion »).</p>
+      <ul>
+        <li>Mouvement circulaire uniforme : la norme de la vitesse est constante, mais sa direction change en permanence</li>
+        <li>L'accélération dans un mouvement circulaire uniforme est centripète (dirigée vers le centre)</li>
+        <li>Mouvement harmonique simple : oscillation périodique autour d'une position d'équilibre (ex : pendule, ressort)</li>
+        <li>Période T : temps pour un cycle complet — Fréquence f = 1/T</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Une masse accrochée à un ressort oscille autour de sa position de repos : c'est un mouvement harmonique simple.</div>
+    `
+  },
+  {
+    id: "phys-7",
+    subject: "Physique",
+    title: "Électromagnétisme : loi de Coulomb",
+    minutes: 18,
+    html: `
+      <h4>Ce qu'il faut savoir</h4>
+      <p>Rubrique « Electromagnetism : Coulomb's law » du syllabus officiel — base de l'électrostatique.</p>
+      <ul>
+        <li>Loi de Coulomb : F = k × |q1 × q2| / d² (force entre deux charges électriques)</li>
+        <li>Charges de même signe → force répulsive ; charges de signes opposés → force attractive</li>
+        <li>La force diminue rapidement quand la distance d entre les charges augmente (proportionnelle à 1/d²)</li>
+      </ul>
+      <div class="example-box"><b>Exemple type :</b> Deux charges positives se repoussent ; une charge positive et une charge négative s'attirent.</div>
+    `
+  }
+];
+
+/* ---- EXAMENS ----
+   Chaque examen = { id, title, description, questions: [...] }
+   Chaque question = { subject, q, options: [...], correct: index (0-based) } */
+const EXAMS = [
+  {
+    id: "exam-blanc-1",
+    title: "Examen blanc n°1 — Mixte",
+    description: "10 questions · Maths, Physique, Chimie, Chinois",
+    duration: 12,
+    questions: [
+      { subject:"Mathématiques", q:"Quelles sont les solutions de x² − 5x + 6 = 0 ?", options:["x = 2 et x = 3","x = −2 et x = −3","x = 1 et x = 6","Aucune solution réelle"], correct:0 },
+      { subject:"Mathématiques", q:"Un sac contient 4 boules rouges et 6 bleues. Quelle est la probabilité de tirer une boule rouge ?", options:["0,6","0,4","0,25","0,5"], correct:1 },
+      { subject:"Mathématiques", q:"Si Δ < 0 pour une équation du second degré, combien de solutions réelles existe-t-il ?", options:["Deux","Une seule","Aucune","Une infinité"], correct:2 },
+      { subject:"Physique", q:"Un objet de 2 kg subit une force de 10 N. Quelle est son accélération ?", options:["2 m/s²","5 m/s²","10 m/s²","20 m/s²"], correct:1 },
+      { subject:"Physique", q:"Quelle est l'unité de la vitesse dans le Système International ?", options:["km/h","m/s","N","kg"], correct:1 },
+      { subject:"Chimie", q:"Combien de protons possède un atome de carbone (Z = 6) ?", options:["6","8","12","3"], correct:0 },
+      { subject:"Chimie", q:"Que représente une colonne du tableau périodique ?", options:["Une période","Une famille chimique","Un isotope","Une réaction"], correct:1 },
+      { subject:"Chinois académique", q:"Que signifie 数学 (shùxué) ?", options:["Physique","Chimie","Mathématiques","Université"], correct:2 },
+      { subject:"Chinois académique", q:"Que signifie 实验 (shíyàn) ?", options:["Calcul","Expérience (laboratoire)","Examen","Cours"], correct:1 },
+      { subject:"Mathématiques", q:"Quelle est la somme des racines de x² − 5x + 6 = 0 (relation de Viète) ?", options:["6","5","−5","1"], correct:1 }
+    ]
+  },
+  {
+    id: "exam-blanc-2",
+    title: "Examen blanc n°2 — Mixte",
+    description: "10 questions · Suites, géométrie, électricité, énergie, mole, grammaire",
+    duration: 12,
+    questions: [
+      { subject:"Mathématiques", q:"Suite arithmétique de premier terme 3 et de raison 4. Quel est le 5ᵉ terme ?", options:["15","19","23","16"], correct:1 },
+      { subject:"Mathématiques", q:"Suite géométrique de premier terme 2 et de raison 3. Quel est le 3ᵉ terme (u₂) ?", options:["6","8","18","12"], correct:2 },
+      { subject:"Mathématiques", q:"Quel est le volume d'un cylindre de rayon 3 cm et de hauteur 10 cm (π ≈ 3,14) ?", options:["≈ 94,2 cm³","≈ 188,4 cm³","≈ 282,6 cm³","≈ 30 cm³"], correct:2 },
+      { subject:"Physique", q:"Un circuit a une résistance de 5 Ω et un courant de 2 A. Quelle est la tension (loi d'Ohm) ?", options:["2,5 V","7 V","10 V","3 V"], correct:2 },
+      { subject:"Physique", q:"Quelle est l'énergie cinétique d'un objet de 4 kg à 3 m/s ?", options:["12 J","18 J","24 J","36 J"], correct:1 },
+      { subject:"Physique", q:"Quelle est l'unité de la puissance électrique ?", options:["Volt","Ampère","Watt","Ohm"], correct:2 },
+      { subject:"Chimie", q:"Dans l'équation CH₄ + 2 O₂ → CO₂ + 2 H₂O, combien d'atomes d'oxygène sont du côté des réactifs ?", options:["2","4","1","3"], correct:1 },
+      { subject:"Chimie", q:"Combien de moles représentent 18 g d'eau (masse molaire M = 18 g/mol) ?", options:["0,5 mol","1 mol","2 mol","18 mol"], correct:1 },
+      { subject:"Chinois académique", q:"Quelle structure exprime une condition en chinois ?", options:["因为...所以...","如果...就...","比","被"], correct:1 },
+      { subject:"Chinois académique", q:"Quelle structure exprime la forme passive en chinois ?", options:["被","如果...就...","比","因为...所以..."], correct:0 }
+    ]
+  },
+  {
+    id: "exam-blanc-3",
+    title: "Examen blanc n°3 — Mixte",
+    description: "10 questions · Fonctions, trigonométrie, ondes, thermo, pH, rédaction",
+    duration: 12,
+    questions: [
+      { subject:"Mathématiques", q:"Pour f(x) = 2x + 1, quelle est l'ordonnée à l'origine ?", options:["2","1","0","−1"], correct:1 },
+      { subject:"Mathématiques", q:"Dans un triangle rectangle, sin(angle) est égal à :", options:["adjacent / hypoténuse","opposé / adjacent","opposé / hypoténuse","hypoténuse / opposé"], correct:2 },
+      { subject:"Mathématiques", q:"sin(30°) est égal à :", options:["1","0,5","0","0,87"], correct:1 },
+      { subject:"Physique", q:"Une onde de fréquence 50 Hz et de longueur d'onde 2 m se propage à quelle vitesse ?", options:["25 m/s","52 m/s","100 m/s","200 m/s"], correct:2 },
+      { subject:"Physique", q:"25 °C correspond à combien de Kelvin ?", options:["25 K","248 K","298 K","373 K"], correct:2 },
+      { subject:"Physique", q:"Que décrit la loi de réflexion de la lumière ?", options:["v = λ × f","Angle d'incidence = angle de réflexion","Q = m × c × ΔT","F = m × a"], correct:1 },
+      { subject:"Chimie", q:"Un pH de 2 correspond à une solution :", options:["Neutre","Basique","Acide","Impossible à déterminer"], correct:2 },
+      { subject:"Chimie", q:"Comment s'appelle le passage direct de solide à gaz ?", options:["Fusion","Sublimation","Vaporisation","Liquéfaction"], correct:1 },
+      { subject:"Chinois académique", q:"Que signifie 百分之五十 ?", options:["15%","50%","500","5,0"], correct:1 },
+      { subject:"Chinois académique", q:"Quel connecteur signifie « ensuite » dans une rédaction structurée ?", options:["首先","然后","最后","因为"], correct:1 }
+    ]
+  },
+  {
+    id: "exam-blanc-4",
+    title: "Examen blanc n°4 — Syllabus officiel CSCA",
+    description: "12 questions · Vecteurs, complexes, statistiques, mouvement circulaire, électromagnétisme",
+    duration: 15,
+    questions: [
+      { subject:"Mathématiques", q:"Le vecteur AB a pour coordonnées A(1,2) et B(4,6). Quelles sont les coordonnées de AB ?", options:["(3, 4)","(5, 8)","(4, 6)","(−3, −4)"], correct:0 },
+      { subject:"Mathématiques", q:"Quel est le module du nombre complexe z = 3 + 4i ?", options:["7","5","12","1"], correct:1 },
+      { subject:"Mathématiques", q:"La partie imaginaire de z = 3 − 2i est :", options:["3","−2","2","−3"], correct:1 },
+      { subject:"Mathématiques", q:"Dans un tableau de notes, si la moyenne est 12 et l'écart-type élevé, que peut-on dire de la dispersion des notes ?", options:["Les notes sont toutes proches de 12","Les notes sont très dispersées autour de 12","Il n'y a aucune information possible","La moyenne est fausse"], correct:1 },
+      { subject:"Mathématiques", q:"Dans une loi normale, autour de quelle valeur les données sont-elles symétriquement réparties ?", options:["Le maximum","La moyenne","Le minimum","L'écart-type"], correct:1 },
+      { subject:"Physique", q:"Dans un mouvement circulaire uniforme, laquelle de ces grandeurs reste constante ?", options:["La vitesse (vecteur)","La direction du mouvement","La norme de la vitesse","L'accélération"], correct:2 },
+      { subject:"Physique", q:"Qu'est-ce qui caractérise un mouvement oscillatoire harmonique simple ?", options:["Une vitesse constante","Un mouvement périodique de va-et-vient autour d'une position d'équilibre","Une trajectoire rectiligne uniforme","Une accélération nulle en permanence"], correct:1 },
+      { subject:"Physique", q:"Selon la loi de Coulomb, la force entre deux charges électriques est proportionnelle à :", options:["La somme des charges","Le produit des charges, inversement proportionnel au carré de la distance","La distance uniquement","La différence des charges"], correct:1 },
+      { subject:"Physique", q:"Deux charges de même signe exercent l'une sur l'autre une force :", options:["Attractive","Répulsive","Nulle","Aléatoire"], correct:1 },
+      { subject:"Chimie", q:"Quelle grandeur relie la quantité de matière (n), la masse (m) et la masse molaire (M) ?", options:["n = m × M","n = m / M","n = M / m","n = m + M"], correct:1 },
+      { subject:"Chinois académique", q:"Quel terme signifie « vecteur » dans un contexte académique scientifique (向量, xiàngliàng) désigne :", options:["Une fonction","Un vecteur","Une probabilité","Une équation"], correct:1 },
+      { subject:"Chinois académique", q:"概率 (gàilǜ) signifie :", options:["Vitesse","Probabilité","Force","Volume"], correct:1 }
+    ]
+  },
+    {
+    id: "exam-real-phy-1",
+    title: "Examen réel — Physique (Test 1)",
+    description: "48 questions · Examen physique original CSCA (mécanique, électricité, optique, thermo)",
+    duration: 45,
+    questions: [
+      { subject:"Physique", q:"Among the following physical quantities, which one is NOT a vector?", options:["Magnetic induction (magnetic flux density)","Momentum","Electric field strength","Potential energy"], correct:3 },
+      { subject:"Physique", q:"On Mars, gravity is 1/3 of Earth's. For a body of mass m = 4.8 kg (g = 10 m/s² on Earth), the gravitational force on Mars is:", options:["144 N","24 N","48 N","16 N"], correct:3 },
+      { subject:"Physique", q:"A spring has a spring constant k = 100 N/m. Under a pulling force F, its length increases from 10 cm to 15 cm. The magnitude of F is:", options:["5 N","25 N","10 N","15 N"], correct:0 },
+      { subject:"Physique", q:"A body of mass m = 4 kg is at rest on a floor with sliding friction coefficient μ = 0.1. If a horizontal force of 2 N is applied, the frictional force acting on the body is:", options:["2 N","3 N","4 N","6 N"], correct:0 },
+      { subject:"Physique", q:"Three forces of magnitudes 2 N, 4 N, and 6 N act on an object simultaneously. The maximum possible magnitude of the resultant force is:", options:["12 N","0 N","10 N","24 N"], correct:0 },
+      { subject:"Physique", q:"On a smooth horizontal surface, a body of mass 2 kg starts from rest under a horizontal force F. If its displacement in 2 s is 8 m, the magnitude of F is:", options:["10 N","6 N","8 N","2 N"], correct:2 },
+      { subject:"Physique", q:"A body starts from rest with uniform acceleration a = 2 m/s² on a smooth surface. Its speed at the end of 4 s is:", options:["4 m/s","16 m/s","8 m/s","2 m/s"], correct:2 },
+      { subject:"Physique", q:"An object falls freely from 100 m above the ground (g = 10 m/s²). At the end of 4 s, its height above the ground is:", options:["45 m","10 m","80 m","20 m"], correct:3 },
+      { subject:"Physique", q:"A body of mass 5 kg starts from rest and slides down a smooth incline of 30°. The distance travelled in 2 s is (g = 10 m/s²):", options:["5 m","1 m","10 m","2 m"], correct:2 },
+      { subject:"Physique", q:"Two forces of 6 N and 8 N act on a body of mass 2 kg. The maximum possible acceleration of the body is:", options:["4 m/s²","7 m/s²","3 m/s²","5 m/s²"], correct:1 },
+      { subject:"Physique", q:"A straight conductor of length 0.5 m, perpendicular to a uniform magnetic field, carries a current of 10 A and experiences a force of 1.5 N. The magnetic induction B is:", options:["0.3 T","0.2 T","0.1 T","0.4 T"], correct:0 },
+      { subject:"Physique", q:"A point mass performs uniform circular motion with speed v = 6 m/s on a circle of radius R = 3 m. Its angular velocity is:", options:["2π rad/s","3π rad/s","2 rad/s","3 rad/s"], correct:2 },
+      { subject:"Physique", q:"An object moves from A through B to C along two semicircular arcs of radius R = 6 m. The time taken from A to C is t = 4 s. The magnitude of its average velocity is:", options:["6 m/s","12 m/s","6π m/s","3π m/s"], correct:0 },
+      { subject:"Physique", q:"Concerning distance and displacement, which of the following statements is correct?", options:["Distance is a vector and displacement is a scalar.","The magnitude of the displacement is always different from the distance.","Distance and displacement are both vectors.","The magnitude of the displacement can be equal to the distance."], correct:3 },
+      { subject:"Physique", q:"A body of mass m = 0.2 kg moves with constant speed v = 20 m/s on a smooth horizontal surface. The magnitude of its momentum is:", options:["0.8 kg·m/s","4 kg·m/s","0.4 kg·m/s","8 kg·m/s"], correct:1 },
+      { subject:"Physique", q:"A body of mass 5 kg slides from rest down a smooth incline of 30° and height 20 m. The magnitude of the impulse of gravity acting on the body in 2 s is (g = 10 m/s²):", options:["50 N·s","25 N·s","200 N·s","100 N·s"], correct:3 },
+      { subject:"Physique", q:"A toy car's displacement–time graph rises linearly from 0 to 4 m over 0–4 s, then falls to 0 at t = 5 s. Which statement is correct?", options:["The displacement in the interval 0–4 s is 8 m.","The speed in the interval 4–5 s is 0.8 m/s.","The speed in the interval 0–4 s is 1.0 m/s.","The average speed in the interval 0–5 s is 0.8 m/s."], correct:2 },
+      { subject:"Physique", q:"A horizontal force F = 20 N pulls a body of mass 10 kg a distance of 5 m on a rough surface where the friction force is 5 N. The work done by the pulling force F is:", options:["100 J","75 J","25 J","−25 J"], correct:0 },
+      { subject:"Physique", q:"On a smooth horizontal surface, a ball of mass m = 3 kg has its speed changed from 2 m/s to 6 m/s by an external force. The work done by the external force is:", options:["54 J","60 J","48 J","6 J"], correct:2 },
+      { subject:"Physique", q:"A light ray passes from air (n = 1) into a medium. The angle of incidence is 60° and the angle of refraction is 30°. The refractive index of the medium is:", options:["2","√3","5","1.5"], correct:1 },
+      { subject:"Physique", q:"A mass–spring system completes one full oscillation in 2 s. The frequency of the vibration is:", options:["2 Hz","0.5 Hz","0.2 Hz","5 Hz"], correct:1 },
+      { subject:"Physique", q:"A sound wave of frequency 200 Hz propagates in air at 340 m/s. Its wavelength is:", options:["1.7 m","3.4 m","6.8 m","680 m"], correct:0 },
+      { subject:"Physique", q:"Two point charges in vacuum are separated by a fixed distance d with Coulomb force F between them. If one charge is doubled, the force becomes:", options:["2F","4F","1/4 F","1/2 F"], correct:0 },
+      { subject:"Physique", q:"A drop of water falls freely from a height of 5 m (g = 10 m/s²). Its speed when it reaches the ground is:", options:["10 m/s","5 m/s","2 m/s","20 m/s"], correct:0 },
+      { subject:"Physique", q:"Two equal point charges are placed at points a and b in a non-uniform field where the field lines are denser near b. The relation between the electric forces Fa and Fb is:", options:["Fa ≥ Fb","Fa = Fb","Fa < Fb","Fa > Fb"], correct:2 },
+      { subject:"Physique", q:"Two resistors of 200 Ω and 300 Ω are connected in parallel. The equivalent resistance of the combination is:", options:["500 Ω","600 Ω","100 Ω","120 Ω"], correct:3 },
+      { subject:"Physique", q:"Two resistors R1 = 40 Ω and R2 = 30 Ω are connected in parallel across a 12 V source. The ratio of currents I1 : I2 is:", options:["1 : 1","1 : 2","4 : 3","3 : 4"], correct:3 },
+      { subject:"Physique", q:"A fixed amount of ideal gas undergoes a process at constant temperature. If the pressure decreases, the volume of the gas:", options:["remains unchanged","decreases","any of the above is possible","increases"], correct:3 },
+      { subject:"Physique", q:"A point charge of 3.0 × 10⁻⁹ C is placed in a uniform electric field of magnitude 6.0 × 10⁴ N/C. The magnitude of the electric force on the charge is:", options:["1.8 × 10⁻⁴ N","2.0 × 10⁻⁴ N","1.8 × 10⁴ N","5 N"], correct:0 },
+      { subject:"Physique", q:"The SI units of magnetic induction B and magnetic flux are respectively:", options:["tesla, weber","ampere, volt","pascal, hertz","joule, watt"], correct:0 },
+      { subject:"Physique", q:"A light ray is incident from air onto a glass surface with an angle of incidence of 30°. The angle between the reflected ray and the incident ray is:", options:["30°","45°","60°","120°"], correct:3 },
+      { subject:"Physique", q:"A straight wire of length L = 0.2 m carries a current I in a uniform magnetic field B = 0.8 T. If the maximum magnetic force on the wire is F = 0.08 N, the current I is:", options:["0.5 A","5 A","0.2 A","2 A"], correct:0 },
+      { subject:"Physique", q:"A fixed amount of ideal gas changes at constant pressure from state A (V₁ = 1.5 m³, T₁ = 300 K) to state B (T₂ = 400 K). The volume in state B is:", options:["1.5 m³","4.5 m³","2 m³","6 m³"], correct:2 },
+      { subject:"Physique", q:"In a non-uniform electric field, the field lines converge toward point b. Comparing the field strengths at points a and b:", options:["Ea > Eb, directions different","Ea < Eb, directions the same","Ea = Eb, directions the same","Ea = Eb, directions different"], correct:1 },
+      { subject:"Physique", q:"A ball of mass m = 20 kg moving at v = 6 m/s collides with a cart of mass M = 40 kg at rest; they move together afterward. The common speed is:", options:["2 m/s","3 m/s","4 m/s","6 m/s"], correct:0 },
+      { subject:"Physique", q:"A basketball of mass 0.5 kg leaves the ground, rises to height 1 m, then falls back to the ground. The change in its gravitational potential energy over the entire process is:", options:["10 J","0.5 J","5 J","0 J"], correct:3 },
+      { subject:"Physique", q:"A ball of mass m = 6 kg hangs from a string making 30° with the vertical while a horizontal force F holds it in equilibrium (g = 10 m/s²). The magnitude of F is:", options:["10√3 N","12 N","20√3 N","20 N"], correct:2 },
+      { subject:"Physique", q:"Two point charges of ±3.0 × 10⁻⁴ C are separated by r = 6 cm in vacuum (k = 9 × 10⁹ N·m²/C²). The electric field at the midpoint between them is:", options:["1.5 × 10⁴ N/C","0 N/C","6.0 × 10⁹ N/C","3.0 × 10⁴ N/C"], correct:2 },
+      { subject:"Physique", q:"A ball is projected horizontally from a height h = 20 m with initial speed v₀ = 20 m/s (g = 10 m/s²). Its speed when it hits the ground is:", options:["40√2 m/s","20√2 m/s","40 m/s","20 m/s"], correct:1 },
+      { subject:"Physique", q:"Two bodies A and B of equal mass rest on a horizontal disc rotating uniformly about a vertical axis. Which statement is correct?", options:["Their angular velocities are the same.","The angular velocity of A is greater than that of B.","The angular velocity of A is smaller than that of B.","Their linear speeds are the same."], correct:0 },
+      { subject:"Physique", q:"A point charge of +4 × 10⁻⁶ C moves from A to B in an electric field, and the electric force does −8 × 10⁻⁴ J of work. The potential difference U_AB is:", options:["−200 V","200 V","−2000 V","2000 V"], correct:0 },
+      { subject:"Physique", q:"Conductors A (+8q) and B (−4q), separated by distance r, are brought into contact then separated back to the same distance. The Coulomb force between them becomes:", options:["1/4 of the original value","4 times the original value","8 times the original value","1/8 of the original value"], correct:3 },
+      { subject:"Physique", q:"A bullet at 700 m/s passes through a wooden board and slows to 500 m/s. Passing through an identical second board, its speed becomes:", options:["200 m/s","100 m/s","50 m/s","300 m/s"], correct:1 },
+      { subject:"Physique", q:"A body of mass 2 kg at rest on a smooth surface is acted on by a horizontal force that is 6 N for 0–1 s and lower afterward, giving an impulse of 8 N·s over 2 s. The kinetic energy at t = 2 s is:", options:["25 J","16 J","36 J","50 J"], correct:1 },
+      { subject:"Physique", q:"A block starts at A with v₀ = 6.0 m/s and decelerates (μ = 0.25) over AB = 2.2 m before leaving a platform at height h = 0.80 m (g = 10 m/s²). The horizontal distance to where it lands is:", options:["3 m","1.5 m","1 m","2 m"], correct:3 },
+      { subject:"Physique", q:"A conducting rod ab slides at constant velocity on horizontal rails connected by a resistor R, in a uniform magnetic field. Which statement is correct?", options:["The rod continues at constant speed even after the pulling force is removed.","If the speed is constant and R is increased, the pulling force needed is doubled.","The greater the speed of rod ab, the smaller the pulling force needed.","In addition to the pulling force, the rod is also subject to a magnetic force."], correct:3 },
+      { subject:"Physique", q:"An object of mass 0.1 kg carrying charge Q is released from rest in a horizontal electric field. Friction is 0.2 N and the electric force is 0.4 N. The work done by the net external force in the first 2 s is:", options:["0.4 J","0.8 J","2.4 J","1.6 J"], correct:1 },
+      { subject:"Physique", q:"Three charged particles a, b, c sit at the vertices of an equilateral triangle of side L in a uniform field perpendicular to side ab, all remaining at rest. The magnitude of the field is:", options:["The total charge carried by a and b is Q.","Particles a and b carry equal charges of opposite signs.","The direction of the field cannot be determined.","E = √3·kQ / (2L²)"], correct:3 }
+    ]
+  },
+    {
+    id: "exam-real-phy-2",
+    title: "Examen réel — Physique CSCA 25.04.2026",
+    description: "48 questions · Examen physique original CSCA (mécanique, ondes, électromagnétisme)",
+    duration: 45,
+    questions: [
+      { subject:"Physique", q:"Which of the following physical quantities is a scalar?", options:["Displacement","Acceleration","Force","Work"], correct:3 },
+      { subject:"Physique", q:"An object's weight on the Moon is about 1/6 of its weight on Earth. For mass m = 6 kg (g = 10 m/s²), its weight on the Moon is:", options:["36 N","10 N","60 N","6 N"], correct:1 },
+      { subject:"Physique", q:"A spring of constant k = 50 N/m and original length 10 cm is stretched to 14 cm. The pulling force is:", options:["6 N","4 N","2 N","8 N"], correct:2 },
+      { subject:"Physique", q:"An object of mass m = 5 kg on a surface with friction coefficient μ = 0.2 is pulled by a horizontal force F = 8 N (g = 10 m/s²). The frictional force is:", options:["8 N","4 N","0 N","10 N"], correct:0 },
+      { subject:"Physique", q:"Three forces of 3 N, 4 N, and 5 N act on the same object. The maximum magnitude of their resultant is:", options:["6 N","12 N","10 N","0 N"], correct:1 },
+      { subject:"Physique", q:"Two forces of 15 N and 5 N act in opposite directions. The magnitude of their resultant is:", options:["15 N","10 N","5 N","20 N"], correct:1 },
+      { subject:"Physique", q:"The three elements of a force are magnitude, direction, and:", options:["Nature","Point of application","Object of action","Effect"], correct:1 },
+      { subject:"Physique", q:"An object starts from rest and accelerates uniformly at a = 3 m/s². Its velocity at the end of 5 s is:", options:["10 m/s","5 m/s","20 m/s","15 m/s"], correct:3 },
+      { subject:"Physique", q:"An object of mass 2 kg is pulled by a 10 N force on a horizontal surface with friction coefficient 0.2 (g = 10 m/s²). Its acceleration is:", options:["6 m/s²","3 m/s²","4 m/s²","5 m/s²"], correct:1 },
+      { subject:"Physique", q:"An object slides down from rest on a smooth inclined plane of 30° (g = 10 m/s²). Its displacement in 2 s is:", options:["10 m","20 m","5 m","15 m"], correct:0 },
+      { subject:"Physique", q:"Two forces of 9 N and 12 N act on a 3 kg object. The maximum possible acceleration is:", options:["4 m/s²","5 m/s²","6 m/s²","7 m/s²"], correct:3 },
+      { subject:"Physique", q:"During the process of two objects being charged by friction, the total amount of charge they possess:", options:["Remains constant","Increases","Insufficient conditions to determine","Decreases"], correct:0 },
+      { subject:"Physique", q:"A particle undergoes uniform circular motion with v = 4 m/s and R = 2 m. Its angular velocity is:", options:["2 rad/s","8 rad/s","4 rad/s","1 rad/s"], correct:0 },
+      { subject:"Physique", q:"An object moves from A to C along a semicircle of radius 4 m in 2 s. The magnitude of its average velocity is:", options:["4 m/s","0 m/s","2 m/s","8 m/s"], correct:0 },
+      { subject:"Physique", q:"An object moves with uniform linear motion on a horizontal surface with a frictional force of 10 N. The magnitude of the pulling force is:", options:["0 N","20 N","10 N","5 N"], correct:2 },
+      { subject:"Physique", q:"A spring has length 12 cm under a 10 N force and 14 cm under a 20 N force. The original length of the spring is:", options:["8 cm","11 cm","9 cm","10 cm"], correct:3 },
+      { subject:"Physique", q:"Which of the following statements about force is WRONG?", options:["Force is the reason for an object to change its motion state.","Force is a vector, having both magnitude and direction.","A force can have an exerting object but no receiving object.","Force is the effect of an object on an object."], correct:2 },
+      { subject:"Physique", q:"An object of mass 4 kg slides down from rest on a 30° incline. The magnitude of the impulse due to gravity in 3 s is (g = 10 m/s²):", options:["60 N·s","40 N·s","80 N·s","120 N·s"], correct:3 },
+      { subject:"Physique", q:"A horizontal force of 15 N moves an object 3 m on a rough surface where the friction is 5 N. The work done by the pulling force is:", options:["45 J","60 J","30 J","15 J"], correct:0 },
+      { subject:"Physique", q:"When sitting in a train moving at constant speed, the trees outside appear to move backward. The reference frame chosen is:", options:["The Sun","The trees","The ground","The train"], correct:3 },
+      { subject:"Physique", q:"A spring-mass system takes 0.5 s to complete one oscillation. The frequency is:", options:["0.5 Hz","1 Hz","4 Hz","2 Hz"], correct:3 },
+      { subject:"Physique", q:"A sound wave has frequency f = 400 Hz and speed v = 340 m/s. Its wavelength is:", options:["1.7 m","3.4 m","0.85 m","0.425 m"], correct:2 },
+      { subject:"Physique", q:"Two identical metal spheres carry charges of +4 C and −6 C. After contact and separation, the charge on each sphere is:", options:["+2 C","−2 C","+1 C","−1 C"], correct:3 },
+      { subject:"Physique", q:"An object has a mass of m = 11 kg (g = 10 m/s²). Its weight is:", options:["110 N","11 N","0.11 N","1.1 N"], correct:0 },
+      { subject:"Physique", q:"Electric field lines are denser near point b than near point a, both carrying equal positive charges. The relationship between Fa and Fb is:", options:["Cannot be determined","Fa = Fb","Fa < Fb","Fa > Fb"], correct:2 },
+      { subject:"Physique", q:"Resistors of 100 Ω and 200 Ω are connected in parallel. The total resistance is:", options:["150 Ω","50 Ω","300 Ω","66.7 Ω"], correct:3 },
+      { subject:"Physique", q:"Two resistors R1 = 6 Ω and R2 = 4 Ω are connected in parallel across a 12 V supply. The ratio of currents I1 : I2 is:", options:["4 : 6","2 : 3","3 : 2","1 : 1"], correct:1 },
+      { subject:"Physique", q:"A point charge Q produces a field E at point A. If the distance doubles, the field strength becomes:", options:["E/2","2E","E/4","4E"], correct:2 },
+      { subject:"Physique", q:"The SI units of magnetic flux density and magnetic flux are respectively:", options:["Ampere, Coulomb","Tesla, Weber","Newton, Joule","Volt, Ohm"], correct:1 },
+      { subject:"Physique", q:"Light travels from air into glass with an angle of incidence of 45°. The angle of reflection is:", options:["90°","60°","45°","30°"], correct:2 },
+      { subject:"Physique", q:"A and B are two points on a ceiling fan, with B farther from the axis. When the fan rotates at constant speed:", options:["vA < vB, ωA < ωB","vA = vB, ωA = ωB","vA < vB, ωA = ωB","vA > vB, ωA > ωB"], correct:2 },
+      { subject:"Physique", q:"A wire of length 0.5 m in a field B = 0.4 T experiences a maximum force of 0.2 N. The current in the wire is:", options:["2 A","0.5 A","1 A","4 A"], correct:2 },
+      { subject:"Physique", q:"A fixed amount of gas at constant volume has its temperature increased from 27°C to 54°C. The pressure becomes ( ) times its original value.", options:["1.09","1","2","1.5"], correct:0 },
+      { subject:"Physique", q:"A coil of 50 turns has its magnetic flux increase uniformly from 0.2 Wb to 0.6 Wb in 0.1 s. The induced EMF is:", options:["200 V","20 V","100 V","50 V"], correct:0 },
+      { subject:"Physique", q:"A ball of mass 0.2 kg falls freely from a height of 2 m (g = 10 m/s²). The change in its gravitational potential energy is:", options:["0 J","−4 J","4 J","2 J"], correct:1 },
+      { subject:"Physique", q:"An electric motor has resistance 2 Ω, rated voltage 100 V, and normal operating current 3 A. The power loss due to heating is:", options:["300 W","18 W","200 W","900 W"], correct:1 },
+      { subject:"Physique", q:"When light travels from an optically denser to a rarer medium and the angle of incidence exceeds the critical angle, ( ) occurs.", options:["Total internal reflection","Refraction","Reflection","Scattering"], correct:0 },
+      { subject:"Physique", q:"Two point charges QA = +2×10⁻⁹ C and QB = −2×10⁻⁹ C are separated by 4 cm in vacuum (k = 9.0×10⁹ N·m²/C²). The field at the midpoint is:", options:["4.5 × 10⁴ N/C","1.8 × 10⁵ N/C","0 N/C","9 × 10⁴ N/C"], correct:3 },
+      { subject:"Physique", q:"For a particle in simple harmonic motion, which quantity is maximum as it passes through the equilibrium position?", options:["Acceleration","Restoring force","Velocity","Displacement"], correct:2 },
+      { subject:"Physique", q:"An object of mass 5 kg slides from rest down a 30° slope from B to A, distance 2 m, with friction force 5 N (g = 10 m/s²). The velocity at A is:", options:["4 m/s","2√5 m/s","8 m/s","5 m/s"], correct:0 },
+      { subject:"Physique", q:"A charge of +5×10⁻⁶ C moves from A to B, and the electric force does +1×10⁻³ J of work. The potential difference U_AB is:", options:["−200 V","200 V","−0.2 V","0.2 V"], correct:1 },
+      { subject:"Physique", q:"An object is moved 10 m by a horizontal force of 20 N, with a frictional force of 5 N. The increase in kinetic energy is:", options:["50 J","200 J","100 J","150 J"], correct:3 },
+      { subject:"Physique", q:"A bullet at 600 m/s penetrates a wooden plank and emerges at 400 m/s. Passing through an identical second plank, its final speed is:", options:["0","100 m/s","50 m/s","200 m/s"], correct:0 },
+      { subject:"Physique", q:"A ball falls freely and contacts an upright spring below until its velocity reaches zero. Which statement about its motion is correct?", options:["After contact, the ball decelerates with increasing acceleration and decreasing velocity, eventually reaching zero.","After contact, the point of zero velocity and zero acceleration is where the spring is compressed the most.","After contact, the ball first accelerates then decelerates, with velocity increasing first, then decreasing to zero.","After contact, the point of maximum velocity is where the spring is compressed the most."], correct:2 },
+      { subject:"Physique", q:"A tower crane lifts a mass m upward with acceleration a, over a height h, using a cable (g = gravity). Which statement about the process is correct?", options:["The work done by the tension in the cable is m(a + g)h.","The work done by gravity on the material is −mah.","The work done by the net force on the material is mgh.","The gravitational potential energy of the material decreases by mgh."], correct:0 },
+      { subject:"Physique", q:"A bicycle's front chainwheel (point A) and rear sprocket (point B) are connected by a chain; the rear sprocket and rear wheel (point C) share the same axle. Which is correct?", options:["Points B and C have the same linear speed.","Points A and B have the same linear speed.","Points A and C have the same linear speed.","Points A and B have the same angular velocity."], correct:1 },
+      { subject:"Physique", q:"A car accelerates from v₀ at constant engine power P, with constant resistance f, reaching maximum speed vₘ after time t and displacement s. The work done by the engine during this time is:", options:["f·vₘ·t","½ f t (v₀ + vₘ)","f·s","½mvₘ² − ½mv₀²"], correct:0 },
+      { subject:"Physique", q:"A wind-tunnel smoke particle follows a curved trajectory that rises to a peak Q, then descends through P. Which statement is correct?", options:["The velocity of the smoke particle is constant.","The smoke particle must undergo uniformly accelerated curvilinear motion.","The direction of acceleration at point P may be horizontal to the left.","The direction of the net force at point Q may be vertically downward."], correct:3 }
+    ]
+  },
+    {
+    id: "exam-real-chem-1",
+    title: "Examen réel — Chimie CSCA Janvier 2026",
+    description: "48 questions · Examen chimie original CSCA (réactions, mole, équilibre, électrolyse)",
+    duration: 45,
+    questions: [
+      { subject:"Chimie", q:"Which of the following is a chemical property of a substance?", options:["Iron nails easily rust in a humid environment","The density of copper is 8.9 g·cm⁻³","Platinum wire turns red when heated","Aluminum is a silver-white metal"], correct:0 },
+      { subject:"Chimie", q:"Which of the following instruments is used for accurately measuring liquid volume?", options:["Measuring cylinder","Beaker","Balance","Gas collection bottle"], correct:0 },
+      { subject:"Chimie", q:"In the laboratory, hydrogen is prepared using:", options:["Iron and concentrated sulfuric acid","Magnesium and concentrated nitric acid","Copper and dilute sulfuric acid","Zinc and dilute sulfuric acid"], correct:3 },
+      { subject:"Chimie", q:"The structural formula of acetic acid is:", options:["CH3CH2OH","CH3OCH3","CH3COOH","CH3CHO"], correct:2 },
+      { subject:"Chimie", q:"Which of the following statements about ¹³C is incorrect?", options:["¹³C and ¹²C have the same number of electrons","¹³C and ¹²C have the same number of protons","¹³C and ¹²C have the same number of neutrons","¹³C is an isotope of ¹²C"], correct:2 },
+      { subject:"Chimie", q:"At 25°C, which of the following solutions has a pH of 1?", options:["0.1 mol·L⁻¹ hydrochloric acid solution","0.1 mol·L⁻¹ sulfuric acid solution","0.1 mol·L⁻¹ sodium hydroxide solution","0.1 mol·L⁻¹ acetic acid solution"], correct:0 },
+      { subject:"Chimie", q:"When observing the flame test for potassium, blue cobalt glass is used to:", options:["Filter out the yellow light of sodium","Protect the eyes from burns","Enhance the purple light of potassium","Increase the observation temperature"], correct:0 },
+      { subject:"Chimie", q:"Which of the following substances forms a true solution with water?", options:["Ethyl acetate","Ethanol","Benzene","Calcium carbonate"], correct:1 },
+      { subject:"Chimie", q:"Which of the following substances is a pure substance?", options:["Medical alcohol","Concrete","Copper","Saline solution"], correct:2 },
+      { subject:"Chimie", q:"Which of the following substances is a homolog of C9H16?", options:["C4H8","C4H10","C5H8","C8H10"], correct:2 },
+      { subject:"Chimie", q:"In which of the following reactions does sulfuric acid act as an oxidizing agent?", options:["2NaCl + H2SO4 → Na2SO4 + 2HCl","H2SO4 + Ba(NO3)2 → 2HNO3 + BaSO4↓","S + 2H2SO4 → 3SO2 + 2H2O","2KOH + H2SO4 → K2SO4 + 2H2O"], correct:2 },
+      { subject:"Chimie", q:"Which of the following substances is an electrolyte?", options:["Sucrose","Carbon dioxide","Metal aluminum","NaCl"], correct:3 },
+      { subject:"Chimie", q:"When 1 mole of hydrogen burns completely in oxygen, the mass of water produced is:", options:["4.5 g","9 g","27 g","18 g"], correct:3 },
+      { subject:"Chimie", q:"Which of the following substances is an electrolyte?", options:["Magnesium","Sodium chloride","Toluene","Helium"], correct:1 },
+      { subject:"Chimie", q:"Which of the following atoms is most likely to lose electrons and form a cation?", options:["Na","Mg","Cl","F"], correct:0 },
+      { subject:"Chimie", q:"Which of the following groups consists of allotropes of the same element?", options:["CH4 and C3H8","¹²C and ¹⁴C","CO and CO2","Diamond and graphite"], correct:3 },
+      { subject:"Chimie", q:"In which of the following substances is the oxidation number of Cl equal to +5?", options:["NaClO3","NaClO4","CaCl2","NaClO"], correct:0 },
+      { subject:"Chimie", q:"Which of the following correctly represents the electron configuration diagram of an argon atom?", options:["Argon: nucleus +18, shells 2, 8, 8","Argon: nucleus +18, shells 2, 8, 7","Argon: nucleus +18, shells 2, 7, 9","Argon: nucleus +18, shells 8, 8, 2"], correct:0 },
+      { subject:"Chimie", q:"Which of the following gases can be collected using both downward displacement of air and water displacement?", options:["CO2","N2","H2","NH3"], correct:0 },
+      { subject:"Chimie", q:"Taking 50 mL from 1 L of 1 mol·L⁻¹ NaOH solution, the molar concentration of this 50 mL solution is:", options:["0.02 mol·L⁻¹","1 mol·L⁻¹","2 mol·L⁻¹","0.2 mol·L⁻¹"], correct:1 },
+      { subject:"Chimie", q:"Which of the following substances can oxidize Fe²⁺ to Fe³⁺?", options:["Cl2","Fe","Zn","NaOH"], correct:0 },
+      { subject:"Chimie", q:"At 25°C, which of the following substances can react with both HCl and NaOH?", options:["NaHCO3","Ca(OH)2","CH3COOH","NaCl"], correct:0 },
+      { subject:"Chimie", q:"Which of the following elements has the smallest atomic radius?", options:["O","C","Na","F"], correct:3 },
+      { subject:"Chimie", q:"When the reaction reaches equilibrium, what is always equal in the reaction system?", options:["Forward reaction rate and reverse reaction rate","Concentration of reactants and products","The time atoms exist in reactant vs product molecules","Mass of reactants and products"], correct:0 },
+      { subject:"Chimie", q:"If 4.0 g of copper(II) oxide is completely reduced by H2, the volume of H2 consumed at STP is:", options:["11.2 L","22.4 L","2.24 L","1.12 L"], correct:3 },
+      { subject:"Chimie", q:"The English name for NaNO2 is:", options:["Ammonium nitrate","Sodium nitride","Sodium nitrite","Sodium nitrate"], correct:2 },
+      { subject:"Chimie", q:"Which of the following substances, when dissolved in water, produces the solution with the highest pH?", options:["NaCl","HNO3","H2S","NH3"], correct:3 },
+      { subject:"Chimie", q:"The reaction between hydrochloric acid and sodium hydroxide belongs to:", options:["Decomposition reaction","Displacement reaction","Combination reaction","Neutralization reaction"], correct:3 },
+      { subject:"Chimie", q:"Which of the following substances contains both ionic and covalent bonds?", options:["Na2O2","CO2","H2O","KCl"], correct:0 },
+      { subject:"Chimie", q:"Which of the following is a displacement reaction?", options:["2NaHCO3 → Na2CO3 + H2O + CO2↑","Fe + CuSO4 → FeSO4 + Cu","2H2 + O2 = 2H2O","CH4 + 2O2 = CO2 + 2H2O"], correct:1 },
+      { subject:"Chimie", q:"In the laboratory preparation of oxygen from H2O2, the commonly used catalyst is:", options:["Manganese dioxide","Potassium chloride","Sodium hydroxide","Potassium chlorate"], correct:0 },
+      { subject:"Chimie", q:"Which of the following substances has bleaching properties?", options:["KClO3","Dry Cl2","NaCl","HClO"], correct:3 },
+      { subject:"Chimie", q:"In the periodic table, the element in the second period and Group VIIA is:", options:["Oxygen","Nitrogen","Fluorine","Chlorine"], correct:2 },
+      { subject:"Chimie", q:"Which of the following ions can coexist in large quantities in an aqueous solution?", options:["Mg2+, Cl−, NH4+, SO4²−","Ca2+, SO4²−, CO3²−, Na+","CO3²−, Na+, SO4²−, H+","OH−, Ca2+, Mg2+, NO3−"], correct:0 },
+      { subject:"Chimie", q:"In a beaker of saturated potassium nitrate solution, which method changes the mass fraction of the solute?", options:["Evaporate some solvent at constant temperature","Increase the solution temperature","Decrease the solution temperature","Add potassium nitrate solid"], correct:2 },
+      { subject:"Chimie", q:"What reagents can be used to detect Cl⁻ ions?", options:["Ba(NO3)2 and dilute nitric acid","AgNO3 and dilute sulfuric acid","BaCl2 and dilute hydrochloric acid","AgNO3 and dilute nitric acid"], correct:3 },
+      { subject:"Chimie", q:"Which of the following contains the largest number of atoms?", options:["11.2 L of CH4 at STP","2 g He","3.01 × 10²³ Al atoms","1 mol HF"], correct:0 },
+      { subject:"Chimie", q:"For the endothermic reaction C(s) + H2O(g) ⇌ CO(g) + H2(g), what shifts the equilibrium in the opposite (reverse) direction?", options:["Increase temperature, increase pressure","Decrease temperature, decrease pressure","Decrease temperature, increase pressure","Increase temperature, decrease pressure"], correct:2 },
+      { subject:"Chimie", q:"H2 mixed with small amounts of CO2 and NH3 should be purified by passing it through, in sequence:", options:["Concentrated H2SO4, then NaOH(aq)","CaO, then NaOH(aq)","NaOH(aq), then CaO","NaOH(aq), then concentrated H2SO4"], correct:3 },
+      { subject:"Chimie", q:"When 12 g of carbon powder burns completely in 0.8 mol of oxygen, the resulting gas contains:", options:["Possibly both CO and CO2","Only CO","CO2 and O2","Only CO2"], correct:0 },
+      { subject:"Chimie", q:"The method to remove a small amount of NaHCO3 impurity from Na2CO3 solid is to:", options:["Introduce carbon dioxide","Add sodium hydroxide","Heat","Add dilute hydrochloric acid"], correct:2 },
+      { subject:"Chimie", q:"For the reaction 2HI(g) ⇌ H2(g) + I2(g) (forward reaction exothermic), which action shifts the equilibrium to the right?", options:["Raise the temperature","Add a catalyst","Increase the system pressure","Remove H2"], correct:3 },
+      { subject:"Chimie", q:"Regarding the esterification CH3COOH + C2H5OH →(H2SO4, Δ) CH3COOC2H5 + H2O, which statement is incorrect?", options:["Concentrated sulfuric acid absorbs the produced water, facilitating the reaction","Concentrated sulfuric acid acts as a catalyst in the reaction","This reaction can be controlled to completely convert reactants into products","This reaction is an esterification reaction"], correct:2 },
+      { subject:"Chimie", q:"When 0.1 mol of Na reacts with 37.8 g of water, the mass fraction of the resulting NaOH solution is:", options:["15%","10%","25%","20%"], correct:1 },
+      { subject:"Chimie", q:"The electron configuration of a ground-state potassium atom is:", options:["1s²2s²2p⁷3s²3p⁶","1s²2s²2p⁶3s²3p⁶4s¹","1s²2s²2p⁶3s²3p⁶3s²4p¹ (invalid)","1s²2s¹2p⁴3s²3p⁶4s² (invalid)"], correct:1 },
+      { subject:"Chimie", q:"A white powder made of two substances: adding water partly dissolves it; adding dilute HCl makes it fully dissolve with bubbling. Adding dilute H2SO4 also bubbles, but solid remains. The powder may be:", options:["CaCO3, BaCO3","AgNO3, Na2CO3","NaOH, CuSO4","Na2CO3, BaCO3"], correct:3 },
+      { subject:"Chimie", q:"Three short-period elements X, Y, Z (increasing nuclear charge): X's outermost shell has twice the electrons of its sub-outer shell; Y's M-shell has half the electrons of its L-shell; Z's sub-outer shell has one more electron than its outermost shell. Which statement is incorrect?", options:["The compound of X and Z is insoluble in water","All three elements are nonmetals","X and Y belong to the same group","The atomic radius of Y is smaller than that of Z"], correct:3 },
+      { subject:"Chimie", q:"In the electrolysis of saturated brine with inert electrodes (a = cathode, b = anode), which statement is correct?", options:["Adding phenolphthalein, the solution near port a turns red over time","The gas released at port a turns moist litmus paper red","The gas released at port b burns with a blue flame","For every 1 mole of electrons transferred, the gas volume released at port b is 22.4 L (STP)"], correct:0 }
+    ]
+  },
+  {
+    id: "exam-real-phy-3",
+    title: "Examen réel — Physique CSCA (Janvier 2026)",
+    description: "48 questions · Examen physique original CSCA (mécanique, ondes, champs, électromagnétisme)",
+    duration: 45,
+    questions: [
+      { subject:"Physique", q:"The 26th International Conference on Weights and Measures redefined the basic unit of mass, effective May 20, 2019. The basic unit of mass is:", options:["N","s","m","kg"], correct:3 },
+      { subject:"Physique", q:"Gravitational acceleration on the Moon is about 1/6 of Earth's. If an object's weight on Earth is 120 N, its weight on the Moon is:", options:["60 N","20 N","120 N","720 N"], correct:1 },
+      { subject:"Physique", q:"A spring has natural length 0.7 m and spring constant k = 10 N/m. When a force of 3 N stretches it, its new length is:", options:["0.5 m","0.7 m","0.3 m","1.0 m"], correct:3 },
+      { subject:"Physique", q:"An object is subjected to two forces F1 = 3 N and F2 = 5 N. The magnitude of their resultant force cannot be:", options:["2 N","9 N","5 N","8 N"], correct:1 },
+      { subject:"Physique", q:"In a uniform magnetic field, a straight wire of length 0.5 m is placed perpendicular to the field. A current of 10 A produces an Ampere force of 1.5 N. The magnetic induction intensity is:", options:["0.3 T","0.2 T","0.4 T","0.1 T"], correct:0 },
+      { subject:"Physique", q:"Which of the following statements about table tennis is correct?", options:["Ping pong is small and can be viewed as a particle at any time","When studying the flight path of the ball, it can be viewed as a particle","The displacement during its flight equals the distance traveled","When studying the rotation of the ball, one must consider it as a particle"], correct:1 },
+      { subject:"Physique", q:"The radius of a Ferris wheel is R. The cabin rotates once with the wheel. Its distance and displacement are:", options:["distance 2πR, displacement 2R","distance 2R, displacement 2πR","distance 2R, displacement 0","distance 2πR, displacement 0"], correct:3 },
+      { subject:"Physique", q:"Which of the following statements is incorrect?", options:["Sprinkling fine soil on frozen ground makes slipping less likely, since maximum static friction increases","Holding a bottle vertically, increasing the grip increases friction on the bottle stays unchanged as long as it doesn't slip","When walking, people are subject to static friction","When a person climbs a vertical bamboo pole at constant speed, the friction they experience acts downward"], correct:3 },
+      { subject:"Physique", q:"Which of the following graphs represents a car moving in a straight line with constant acceleration?", options:["x–t graph: straight line through origin","v–t graph: straight line through origin, positive slope","x–t graph: straight declining line","v–t graph: horizontal constant line"], correct:1 },
+      { subject:"Physique", q:"An object falls freely from a height of 5 m. The time to reach the ground is (g = 10 m/s²):", options:["4 s","1 s","2 s","3 s"], correct:1 },
+      { subject:"Physique", q:"An object moves in uniform circular motion with radius 0.1 m and period 5 s. Its linear velocity and angular velocity are, respectively:", options:["100π, 0.4π","0.4π, 0.4π","0.5π, 100π","0.04π, 0.4π"], correct:3 },
+      { subject:"Physique", q:"A toy car's displacement (x) vs time (t) graph rises linearly from 0 to 4m over 0–4s, then falls to 0 at t=5s. Which statement is correct?", options:["Within 0–4 s, the displacement is 8 m","Within 0–4 s, the speed of the toy car is 1.0 m/s","Within 0–5 s, the average speed is 0.8 m/s","Within 4–5 s, the speed is 0.8 m/s"], correct:1 },
+      { subject:"Physique", q:"An elevator accelerates upward at 2 m/s². The force exerted on the floor by a 50 kg person inside is (g = 10 m/s²):", options:["500 N","300 N","400 N","600 N"], correct:3 },
+      { subject:"Physique", q:"An object of mass 1 kg slides right along the ground with a sliding friction force of 3 N (g = 10 m/s²). The coefficient of kinetic friction is:", options:["0.2","0.3","1","0.4"], correct:1 },
+      { subject:"Physique", q:"On a smooth horizontal surface, a constant force F acts on a stationary 1.0 kg object, changing its velocity by 10 m/s within 1 second. The magnitude of F is:", options:["40 N","5 N","10 N","20 N"], correct:2 },
+      { subject:"Physique", q:"Light enters a medium from air with angle of incidence i=60° and angle of refraction r=30°. Given refractive index of air n=1, the refractive index of the medium is:", options:["√3","3","1.5","√5"], correct:0 },
+      { subject:"Physique", q:"A small ball is in uniform circular motion with angular velocity 100π rad/s at a distance of 1 cm from the center. Its centripetal acceleration is:", options:["50π² m/s²","100π² m/s²","10000π² m/s²","π m/s²"], correct:1 },
+      { subject:"Physique", q:"A spring oscillator performs SHM between A and B (O is equilibrium). The distance AB and the number of oscillations in the given time are shown. Which statement is correct?", options:["If timing starts when the ball passes O, the distance traveled within 3 seconds is 24 cm","The ball travels 12 cm in one complete oscillation","The period of the oscillator is 2 s, with an amplitude of 6 cm","The frequency of the oscillator is 2 Hz"], correct:2 },
+      { subject:"Physique", q:"An object of mass 50 kg moves horizontally right at 10 m/s. Its momentum and kinetic energy are, respectively:", options:["500 kg·m/s, 2500 J","2500 kg·m/s, 500 J","500 kg·m/s, 5000 J","5 kg·m/s, 500 J"], correct:0 },
+      { subject:"Physique", q:"A water droplet with zero initial velocity falls from a 5 m high eaves (no air resistance). Its speed hitting the ground is (g = 10 m/s²):", options:["5 m/s","10 m/s","2 m/s","20 m/s"], correct:1 },
+      { subject:"Physique", q:"A box is pulled by F = 50 N at 37° to horizontal, moving it 10 m on a horizontal surface (cos37°≈0.8). The work done by F is:", options:["400 J","300 J","500 J","250 J"], correct:0 },
+      { subject:"Physique", q:"A simple harmonic transverse wave moves in +x direction at 10 m/s. Its waveform at t=0 has a peak at x=2m (y=6cm), zero at x=4m, trough at x=6m (y=-6cm), zero at x=8m, peak at x=10m. Which statement is correct?", options:["The wavelength is 12 m, the period is 1.2 s","The wavelength is 4 m, the period is 0.4 s","Within 0~0.6s, particle P has travelled 18 cm","The wavelength is 8 m, the period is 0.8 s"], correct:3 },
+      { subject:"Physique", q:"Two resistors of 3 Ω and 6 Ω. Which statement is correct?", options:["Series total 2 Ω, parallel total 2 Ω","Series total 9 Ω, parallel total 9 Ω","Series total 9 Ω, parallel total 2 Ω","Series total 2 Ω, parallel total 9 Ω"], correct:2 },
+      { subject:"Physique", q:"In a circuit with R=2Ω, after disconnecting switch S the voltmeter reads 3V; after closing S, it reads 2V. The internal resistance r of the power supply is:", options:["3 Ω","2 Ω","4 Ω","1 Ω"], correct:3 },
+      { subject:"Physique", q:"A balloon filled with ideal gas rises; volume stays constant while temperature decreases. In this process the gas would:", options:["Absorb heat","Increase pressure","Decrease internal energy","Do negative work to outside"], correct:2 },
+      { subject:"Physique", q:"During the ascent of a vertically-thrown object, gravity does −70 J of work on it. Ignoring air resistance, which statement is correct?", options:["Gravitational PE decreases by 70 J","Gravitational PE increases by 70 J","Mechanical energy decreases by 70 J","Gravitational PE remains constant"], correct:1 },
+      { subject:"Physique", q:"If the current through a wire is 1.6 A, the charge passing through its cross-section within 0.5 s is:", options:["1.6 C","1.2 C","2.0 C","0.8 C"], correct:3 },
+      { subject:"Physique", q:"A certain mass of ideal gas, with temperature constant and pressure reduced, its volume would:", options:["all options possible","increase","decrease","remain unchanged"], correct:1 },
+      { subject:"Physique", q:"Three point charges A, B, C sit at vertices of an equilateral triangle; A and B are positive. The resultant force on A from B and C, F_A, makes an angle less than 60° with the extension of line BA. What is the charge at C?", options:["Positively charged, amount less than B","Negatively charged, amount greater than B","Positively charged, amount greater than B","Negatively charged, amount less than B"], correct:3 },
+      { subject:"Physique", q:"Two parallel plates M and N carry equal opposite charges; field lines between them point upward from N to M, evenly spaced. P and Q are two points in the field. Which statement is correct?", options:["M has positive charge, N has negative charge","P, Q have equal field strength","Both potential and field strength at P, Q are different","P, Q have equal electrical potential"], correct:1 },
+      { subject:"Physique", q:"A wire of length L=0.5m carries I=2A in a uniform field B=0.4T; the angle between field and current direction is 30°. The Ampere force on the wire is:", options:["0.4 N","0 N","0.2 N","√3/5 N"], correct:2 },
+      { subject:"Physique", q:"In a uniform field B=0.8T, a rectangular coil has area S=0.5m², with the normal at 60° to the field. The magnetic flux through the coil is:", options:["0.2 Wb","0.8 Wb","0.4 Wb","0.6 Wb"], correct:0 },
+      { subject:"Physique", q:"A rectangular wire frame abcd sits beside a long straight wire carrying current I; by adjusting I, B increases uniformly over time at each point. Which statement is correct?", options:["There is a current flowing through segment ae","The induced current in the frame gradually increases","The frame experiences an Ampere force horizontally away from the wire","The Ampere force acting on the far edge is constant"], correct:2 },
+      { subject:"Physique", q:"There is an electric field in space with two points a and b; the field lines converge (get denser) toward b. Which statement is correct?", options:["The field strength at b is greater than at a","The field strength at a is greater than at b","This field is a uniform field","The field strength at a and b is the same"], correct:0 },
+      { subject:"Physique", q:"A glass cylinder's cross-section is semicircular. A beam travels toward center O at incident angle α=30° (inside the glass), and the reflected beam and refracted beam are exactly perpendicular. The refractive index of the glass is:", options:["√3","√2","1/√3","√3/2"], correct:0 },
+      { subject:"Physique", q:"The trajectory of a leaf falling from the air is shown, with velocity directions marked at positions a, b, c, d. The correct direction is:", options:["b","c","a","d"], correct:3 },
+      { subject:"Physique", q:"A student throws a basketball of mass m from height h at initial velocity v; it enters the basket at height H. Taking the ground as zero PE, ignoring air resistance, the mechanical energy of the basketball entering the basket is:", options:["½mv² + mgH","½mv² + mg(H−h)","½mv²","½mv² + mgh"], correct:3 },
+      { subject:"Physique", q:"A car of mass 2 tons with a 30 kW engine travels at constant 72 km/h on level ground. The resistance experienced by the car is:", options:["5×10³ N","6×10³ N","1.5×10³ N","2×10³ N"], correct:2 },
+      { subject:"Physique", q:"A ball is thrown horizontally from a height at v0 and lands on the ground; then thrown again from the same height at 2v0. During the second throw:", options:["Horizontal displacement becomes twice the original","Time taken to fall becomes twice the original","Horizontal displacement becomes half the original","Time taken to fall becomes half the original"], correct:0 },
+      { subject:"Physique", q:"Two equal-mass objects A and B sit on a horizontal disk rotating uniformly about a vertical axis, remaining stationary relative to the disk. Then:", options:["the angular velocity of A is the same as B","the linear velocity of A is the same as B","the angular velocity of A is greater than B","the angular velocity of A is smaller than B"], correct:0 },
+      { subject:"Physique", q:"An object of mass m falls freely from rest, ignoring air resistance. The power delivered by gravity over time t is:", options:["½mg²t","mgt","mg²t","¼mgt"], correct:0 },
+      { subject:"Physique", q:"A fixed U-shaped rail with a load is in a uniform field perpendicular to the plane; a rod ef slides freely on the rails. As ef moves left, which statement is correct?", options:["Current flows through the open segment ae","The magnetic flux through the loaded loop remains unchanged","Current flows through segment bc (with the load)","The magnetic flux through the loaded loop decreases"], correct:2 },
+      { subject:"Physique", q:"Two identical metal spheres at A (+Q) and B (−5Q) in vacuum; a charge q at point C beyond B satisfies AB=BC, experiencing force F1. If the spheres are brought into contact then returned to A and B, the force on q becomes F2. F1/F2 is:", options:["21/10","19/10","21/16","19/16"], correct:1 },
+      { subject:"Physique", q:"A basketball of mass 0.6 kg moving left at 2 m/s bounces off a wall, returning right at 1 m/s. Contact time is 0.1 s. The average force from the wall on the ball is:", options:["1.8 N","12 N","18 N","6 N"], correct:2 },
+      { subject:"Physique", q:"Four balls A(4m), B(3m), C(2m), D(m) hang from O connected alternately by wires and springs (O–wire–A–spring–B–wire–C–spring–D). The wire between B and C is cut. The accelerations of B and C at that instant are, respectively:", options:["2g, 1.5g","g, 1.5g","g, 0.5g","2g, 0.5g"], correct:1 },
+      { subject:"Physique", q:"Parallel rails connected by resistor R; wire ab slides frictionlessly, uniform field perpendicular to the frame. When ab moves uniformly right, which statement is correct?", options:["As long as ab reaches a certain velocity, removing the external force lets it maintain uniform motion","Wire ab is subject to tension force and also to magnetic field force","At constant ab speed, increasing R lets the pulling force be increased","The higher the speed of ab, the smaller the required pulling force"], correct:1 },
+      { subject:"Physique", q:"A particle of mass m, charge q>0, is projected horizontally at v0 from point P on line MN (45° to horizontal) into a uniform field E directed vertically downward (gravity negligible). When the particle returns to line MN:", options:["The angle the velocity makes with vertical is 30°","The distance from P is 2√2·mv0²/(qE)","The time taken is mv0/(qE)","The velocity is 3v0"], correct:1 },
+      { subject:"Physique", q:"Maximum deceleration of a small car is 6 m/s². Driving at 108 km/h with reaction time 1.5s, the minimum safe following distance is at least:", options:["90 m","60 m","120 m","150 m"], correct:2 }
+    ]
+  },
+    {
+    id: "exam-real-phy-4",
+    title: "Examen réel — Physique CSCA (Mars 2026)",
+    description: "48 questions · Examen physique original CSCA (cinématique, énergie, champs, induction)",
+    duration: 45,
+    questions: [
+      { subject:"Physique", q:"In SI units, the unit of force is:", options:["Ohm (Ω)","Newton (N)","Watt (W)","Joule (J)"], correct:1 },
+      { subject:"Physique", q:"Among velocity, time, acceleration, and speed, the number of vector quantities is:", options:["1","4","3","2"], correct:3 },
+      { subject:"Physique", q:"An object has weight G=60N (g=10 m/s²). Its mass is:", options:["60 kg","600 kg","6 kg","0.6 kg"], correct:2 },
+      { subject:"Physique", q:"The minimum resultant force of two forces 7 N and 8 N is:", options:["3 N","15 N","7 N","1 N"], correct:3 },
+      { subject:"Physique", q:"An object starts from rest with uniform acceleration. Its displacement in the first second is 2 m. Its displacement during the second second is:", options:["3 m","8 m","6 m","4 m"], correct:2 },
+      { subject:"Physique", q:"An object falls freely and covers half of the total distance in the first second. The additional time needed to reach the ground is:", options:["(√2−1) s","1 s","√2 s","1.5 s"], correct:0 },
+      { subject:"Physique", q:"An outdoor fitness device has two wheels connected by a belt at their rims, with points A and B on the rims of the two wheels. As the wheel rotates, the linear velocities at A and B satisfy:", options:["Unable to determine","vB < vA","vB > vA","vB = vA"], correct:3 },
+      { subject:"Physique", q:"A 4 kg object on a smooth horizontal surface is subject to a 20 N pulling force. Its acceleration is:", options:["20 m/s²","10 m/s²","2 m/s²","5 m/s²"], correct:3 },
+      { subject:"Physique", q:"A 0.4 kg object is at rest on a 30° inclined plane. The impulse of the frictional force on the object over 5 s is (g=10 m/s²):", options:["10√3 N·s","20 N·s","0","10 N·s"], correct:3 },
+      { subject:"Physique", q:"In a uniform magnetic field, a straight wire of length 0.5 m perpendicular to the field carries 10 A and experiences an Ampere force of 2 N. The magnetic flux density is:", options:["0.4 T","0.3 T","0.1 T","0.2 T"], correct:0 },
+      { subject:"Physique", q:"In a displacement-time graph of SHM, points A and B lie symmetric about a peak at the same displacement. The relationship of speeds at A and B is:", options:["vA = vB","Cannot be compared","vA > vB","vA < vB"], correct:0 },
+      { subject:"Physique", q:"The displacement x of a toy car vs time t rises linearly from 0 to 4m over 0-4s then falls to 0 at t=5s. Which statement is correct?", options:["Within 0−4 s, the speed of the toy car is 1.0 m/s","Within 0−5 s, the speed of the toy car is 0.8 m/s","Within 0−4 s, the displacement is 8 m","Within 0−5 s, the average speed is 0.8 m/s"], correct:0 },
+      { subject:"Physique", q:"A 4 kg cart moving at 3 m/s collides and couples with a stationary 3 kg cart. The total momentum after collision is:", options:["9 kg·m/s","12 kg·m/s","3 kg·m/s","21 kg·m/s"], correct:1 },
+      { subject:"Physique", q:"The displacement-time graph of two objects A and B both go from (0,0) to (30,30) over 0-30s (A along a curve, B along a straight line). During 0-30s, the average speeds vA and vB satisfy:", options:["vA = vB","vA < vB","vA > vB","Cannot be compared"], correct:0 },
+      { subject:"Physique", q:"The velocity-time graph of a 5 kg block: v rises from 2 to 4 m/s over 0-2s, stays at 4 from 2-4s, then falls to 0 from 4-6s. Its kinetic energy change between t=0 and t=6s is:", options:["40 J","30 J","0 J","10 J"], correct:3 },
+      { subject:"Physique", q:"Light enters a medium from air with angle of incidence i=60°, angle of refraction r=30°. Given n(air)=1, the refractive index of the medium is:", options:["1.5","√2","√5","√3"], correct:3 },
+      { subject:"Physique", q:"Which of the following x-t graphs does NOT represent uniform linear motion? (One graph shows a constant horizontal line at x=x0, i.e. the object at rest.)", options:["Horizontal line at x=x0 (object at rest, v=0)","Straight rising line starting at x0","Straight declining line from origin","Straight rising line from origin"], correct:0 },
+      { subject:"Physique", q:"A particle moves along a circular path of radius r, completes one revolution, returning to the original position. Its displacement and distance traveled are, respectively:", options:["0, 0","2πr, 0","0, 2πr","2πr, 2πr"], correct:2 },
+      { subject:"Physique", q:"A mechanical wave with frequency 40 Hz propagates at 280 m/s. Its wavelength is:", options:["7 m","40 m","240 m","1/7 m"], correct:0 },
+      { subject:"Physique", q:"A water droplet with zero initial velocity falls from a 5 m high eaves (no air resistance). Its speed hitting the ground is (g=10 m/s²):", options:["10 m/s","20 m/s","5 m/s","2 m/s"], correct:0 },
+      { subject:"Physique", q:"When an object is in equilibrium, it must be:", options:["Moving in a straight line at constant velocity","At rest","With zero velocity","With zero resultant force from concurrent forces"], correct:3 },
+      { subject:"Physique", q:"A block moves a distance x0 horizontally under a force F at angle α to horizontal. The work done by F is:", options:["Fx0 cos α","Fx0/sin α","Fx0 sin α","Fx0/cos α"], correct:0 },
+      { subject:"Physique", q:"A diagram shows a projectile's velocity (v) and acceleration (a) at successive points along its curved path. Which correctly shows v rotating from horizontal toward vertical while a stays constant, pointing straight down throughout?", options:["Diagram A: a rotates parallel to v at each point","Diagram B: a changes direction at each point (not constant)","Diagram C: v stays purely horizontal at every point (doesn't rotate)","Diagram D: a constant downward at every point, v rotates from horizontal toward vertical"], correct:3 },
+      { subject:"Physique", q:"A light spring, within its elastic limit, produces 8.0 N of force at a 4.0 cm extension. When compressed 1.0 cm, its force is:", options:["4.0 N","2.0 N","8.0 N","6.0 N"], correct:1 },
+      { subject:"Physique", q:"A certain mass of ideal gas, with temperature constant and pressure reduced, its volume would:", options:["decrease","remain unchanged","increase","all options possible"], correct:2 },
+      { subject:"Physique", q:"A resistor of resistance R has voltage U across it. The graph of charge q vs time has a slope representing:", options:["R","U/R","1/R","U"], correct:1 },
+      { subject:"Physique", q:"For a single-turn coil with magnetic flux decreasing uniformly by 2 Wb each second, which description is correct?", options:["No EMF is induced","Induced EMF increases by 2V each second","Induced EMF decreases by 2V each second","Induced EMF remains constant"], correct:3 },
+      { subject:"Physique", q:"A light ray strikes a mirror with an angle of incidence of 30°. The angle of reflection is:", options:["0°","60°","45°","30°"], correct:3 },
+      { subject:"Physique", q:"In vacuum, points A and B are at distances r and 3r from charge Q respectively. The ratio of their electric field strengths (A:B) is:", options:["1:9","3:1","9:1","1:3"], correct:2 },
+      { subject:"Physique", q:"In a uniform field E, a thin rod ab of length L makes angle θ with the field. The potential difference between ends a and b is:", options:["EL sin θ","0","EL cos θ","EL"], correct:2 },
+      { subject:"Physique", q:"A ray of light enters glass with refractive index n=√2 from air. Total internal reflection occurs when the angle of incidence exceeds:", options:["45°","30°","total internal reflection would not occur","60°"], correct:0 },
+      { subject:"Physique", q:"The P–T graph of a certain gas shows pressure vs temperature at constant volume as a line through the origin, then transitioning to a steeper line through the origin. From the graph, the volume of the gas is:", options:["First constant then decreasing","First decreasing then constant","First constant then increasing","First increasing then constant"], correct:0 },
+      { subject:"Physique", q:"A wire 0.20 m long carrying 2.0 A in a 0.50 T uniform field cannot experience an Ampere force of:", options:["0.10 N","0 N","0.40 N","0.20 N"], correct:2 },
+      { subject:"Physique", q:"There is an electric field in space with two points a and b; the field lines converge (get denser) toward b. Which statement is correct?", options:["Field strength at a is greater than at b","Field strength at a and b is the same","This field is a uniform field","Field strength at b is greater than at a"], correct:3 },
+      { subject:"Physique", q:"In Faraday's electromagnetic induction experiment, which of the following does NOT cause the ammeter pointer to deflect?", options:["When opening the switch","Keeping the switch closed","When closing the switch","When adjusting the rheostat"], correct:1 },
+      { subject:"Physique", q:"In free-fall, let Ep be gravitational PE and h be distance fallen, ground as zero PE. Which graph correctly shows Ep vs h?", options:["Straight line decreasing from Ep-axis to h-axis","Concave curve decreasing (quarter-circle-like)","Increasing concave-up curve","Increasing straight line"], correct:0 },
+      { subject:"Physique", q:"A 10 kg object remains stationary on a rough surface under horizontal forces F1=18N (right) and F2=10N (left); μ=0.2 (g=10 m/s²). The friction force on the object is:", options:["10 N, towards the right","8 N, towards the left","20 N, towards the left","18 N, towards the left"], correct:1 },
+      { subject:"Physique", q:"An object of mass m falls from rest with constant air resistance, achieving acceleration (4/5)g. When falling a distance h, its mechanical energy loss is:", options:["(1/5)mgh","(4/5)mgh","0","mgh"], correct:0 },
+      { subject:"Physique", q:"Field-line diagrams: A shows lines radiating outward from a point; B shows a dipole pattern between two points (lines from one point curving to the other); C shows two points with lines converging into both from outside; D shows uniform parallel lines. Which statement is correct?", options:["Diagram B shows the field of two equal but opposite point charges","Diagram A shows the field of a negative point charge","Diagram C shows the field of two equal negative point charges","Diagram D shows the field between two plates of a charged parallel-plate capacitor"], correct:0 },
+      { subject:"Physique", q:"Two equal-mass objects A and B sit on a horizontal disk rotating uniformly about the vertical axis, remaining stationary relative to the disk. Then:", options:["the angular velocity of A is the same as B","the angular velocity of A is smaller than B","the linear velocity of A is the same as B","the angular velocity of A is greater than B"], correct:0 },
+      { subject:"Physique", q:"Two identical metal spheres carry −Q and +3Q, separated by distance r, with Coulomb force F. After contact and separation to distance 2r, their new Coulomb force is:", options:["12F","4/3 F","3/4 F","1/12 F"], correct:3 },
+      { subject:"Physique", q:"In the field of a positive point charge Q, the potential difference between A and B is U. When a positive charge q is moved from B to A:", options:["External force does work qU to overcome the field, increasing PE by qU","External force does work QU to overcome the field, decreasing PE by QU","External force does work qU, increasing PE by QU","External force does work QU, increasing PE by qU"], correct:0 },
+      { subject:"Physique", q:"Three identical resistors connected in series or parallel combinations; the minimum combined resistance measured is 9Ω. The resistance of a single resistor is:", options:["18Ω","27Ω","3Ω","9Ω"], correct:1 },
+      { subject:"Physique", q:"A smooth wedge M with horizontal top surface sits on a fixed frictionless incline; a smooth ball m rests on the wedge. When M is released from rest, before the ball hits the slope, the ball's trajectory (relative to ground) is:", options:["Irregular curve","Straight line along the slope downwards","Parabola","Straight line vertically downwards"], correct:3 },
+      { subject:"Physique", q:"An experimental setup verifies Lenz's law: a bar magnet (S pole up, N pole down) falls through a fixed coil from top to bottom. Which statement is correct?", options:["Induced current direction is b→(G)→a first, then a→(G)→b","Induced current direction is a→(G)→b first, then b→(G)→a","When the S pole leaves the coil at the bottom, it is subject to a repulsive force","When the N pole approaches the coil at the top, it is subject to an attractive force"], correct:1 },
+      { subject:"Physique", q:"An object moves uniformly up a 30° incline via a rope parallel to the incline; coefficient of friction is √3/3, g=10 m/s². If the rope's max tension is 1500N, the maximum mass of the object is:", options:["200√3 kg","100√3 kg","200 kg","150 kg"], correct:3 },
+      { subject:"Physique", q:"Parallel rails connected by resistor R; wire ab slides frictionlessly, uniform field perpendicular to the frame. When ab moves uniformly right, which statement is correct?", options:["The higher the speed of ab, the smaller the required pulling force","As long as ab reaches a certain speed, removing the external force lets it maintain uniform motion","Wire ab is subject to tension force and also to magnetic field force","At constant ab speed, increasing R lets the pulling force be increased"], correct:2 },
+      { subject:"Physique", q:"A high-speed train's electromagnetic braking: a rectangular wireframe (sides ab, cd length L, resistance R) enters a uniform vertical field (density B) at speed v0, braking under constant resistance f, train body length s, mass m. As side ab enters the field, which statement about the entry-instant acceleration/charge is correct?", options:["Total charge during braking is q ≥ BLs/R","Total charge q and BLs/R cannot be compared","Acceleration as ab enters: a=(v0²−fR)/(4B²L²mR)","Acceleration as ab enters the field is proportional to (B²L²v0+fR)/(mR)"], correct:3 }
+    ]
+  },
+    {
+    id: "exam-real-math-1",
+    title: "Examen réel — Mathématiques CSCA 25.04.2026",
+    description: "48 questions · Examen mathématiques original CSCA (ensembles, fonctions, suites, trigonométrie, géométrie)",
+    duration: 45,
+    questions: [
+      { subject:"Mathématiques", q:"Let A={1,3,4,6,7}, B={1,3,5}. Which of the following statements is correct?", options:["A ∈ B","A ⊆ B","B ∈ A","B ⊆ A"], correct:3 },
+      { subject:"Mathématiques", q:"Let A={x | 3<x<5}, B={x | x>4}. Then A∩B is:", options:["{x | 3<x≤4}","{x | 4≤x<5}","{x | 4<x<5}","{x | 3<x<4}"], correct:2 },
+      { subject:"Mathématiques", q:"Which of the following points is in the third quadrant?", options:["(1, −2)","(1, 2)","(−1, −2)","(−1, 2)"], correct:2 },
+      { subject:"Mathématiques", q:"The solution set of x² − 2x − 3 ≥ 0 is:", options:["(−1, 3)","(−∞, −1] ∪ [3, +∞)","(−∞, −1) ∪ (3, +∞)","[−1, 3]"], correct:1 },
+      { subject:"Mathématiques", q:"The domain of the function f(x) = √x + 1 is:", options:["(−∞, 0]","(−∞, +∞)","[1, +∞)","[0, +∞)"], correct:3 },
+      { subject:"Mathématiques", q:"In the Cartesian plane, point M has horizontal coordinate −4, and its distance to the x-axis is 5. The coordinates of M are:", options:["(−4, 5) or (−4, 3)","(−4, 5) or (−4, −5)","(5, −4)","(−5, −4)"], correct:1 },
+      { subject:"Mathématiques", q:"sin 120° = ", options:["√3/2","−√3/2","−1/2","1/2"], correct:0 },
+      { subject:"Mathématiques", q:"Which of the following functions is an odd function?", options:["y = ∛x + 2","y = x² + 3","y = x³ + 1","y = −x"], correct:3 },
+      { subject:"Mathématiques", q:"The slope of the line through A(−1, 1) and B(2, 3) is:", options:["−3/2","−2/3","3/2","2/3"], correct:3 },
+      { subject:"Mathématiques", q:"The inverse function of y = 10x + 3 is:", options:["y = (x+10)/3","y = (x−10)/3","y = (x+3)/10","y = (x−3)/10"], correct:3 },
+      { subject:"Mathématiques", q:"Which of the following functions is decreasing on (−∞, +∞)?", options:["y = −x + 5","y = x³","y = x² + 1","y = −1/x"], correct:0 },
+      { subject:"Mathématiques", q:"The solution set of (2x+1)/(x−1) < 0 is:", options:["(−∞, −1/2) ∪ [1, +∞)","(−1/2, 1)","(−1/2, 1)","(−∞, −1/2) ∪ (1, +∞)"], correct:1 },
+      { subject:"Mathématiques", q:"If −1, a, 15 form an arithmetic sequence, then a = ", options:["9","5","7","11"], correct:2 },
+      { subject:"Mathématiques", q:"If the angle of inclination of a line l is 60°, then the slope of l is:", options:["−√3","√3/2","1/2","√3"], correct:3 },
+      { subject:"Mathématiques", q:"If {an} is arithmetic with a1=1, a2=3, then a5 = ", options:["9","5","7","11"], correct:0 },
+      { subject:"Mathématiques", q:"If point P(x,y) is on the terminal side of angle α, with distance r from the origin (r≠0), then cos α = ", options:["y/r","y/x","x/y","x/r"], correct:3 },
+      { subject:"Mathématiques", q:"If the general term of {an} is an = 2n−1, which statement is correct?", options:["{an} is both arithmetic and geometric","{an} is neither arithmetic nor geometric","{an} is arithmetic","{an} is geometric"], correct:2 },
+      { subject:"Mathématiques", q:"The distance from point A(0,3) to point B(x,−1) is 5. Then x =", options:["√21","±3","3","−3"], correct:1 },
+      { subject:"Mathématiques", q:"A line l has slope −3 and passes through (1,2). The equation of l is:", options:["3x + y − 5 = 0","x + 3y − 7 = 0","3x + y + 1 = 0","x + 3y + 5 = 0"], correct:0 },
+      { subject:"Mathématiques", q:"A circle has radius 3 and center (−1,2). Its equation is:", options:["x²+y²−2x−4y−4=0","x²+y²+2x+4y−4=0","x²+y²+2x−4y+4=0","x²+y²+2x−4y−4=0"], correct:3 },
+      { subject:"Mathématiques", q:"If cos α = 2/3, and 0<α<π/2, then tan α =", options:["√3/3","−√3/2","2√5/5","√5/2"], correct:3 },
+      { subject:"Mathématiques", q:"If {an} is geometric with a1=−48, a4=6, the common ratio q =", options:["−1/2","−2","1/2","2"], correct:0 },
+      { subject:"Mathématiques", q:"A circle passes through A(2,2) and has center (2,0). Its equation is:", options:["x²+(y−2)²=2","(x−2)²+y²=4","(x−2)²+y²=2","(x−2)²+(y−2)²=4"], correct:1 },
+      { subject:"Mathématiques", q:"If a,b,c are rationals and a>b, which statement is correct?", options:["a+c > b+c","a/c > b/c","ac > bc","a−c < b−c"], correct:0 },
+      { subject:"Mathématiques", q:"If the exponential function y=aˣ is monotonically decreasing, the range of a is:", options:["a>0","0<a<1","a>1","a<1"], correct:1 },
+      { subject:"Mathématiques", q:"If sin α = 3/4, then cos 2α = ", options:["7/16","−7/16","1/8","−1/8"], correct:3 },
+      { subject:"Mathématiques", q:"The intersection point of lines l1: 3x−y+2=0 and l2: 4x−y+3=0 is:", options:["(1, −1)","(−1, −1)","(−1, 1)","(1, 1)"], correct:1 },
+      { subject:"Mathématiques", q:"If the eccentricity of the hyperbola x²/a² − y²/3 = 1 (a>0) is e=2, then a =", options:["2","√6/2","√5/2","1"], correct:3 },
+      { subject:"Mathématiques", q:"The sequence 1/2, −1/4, 1/8, ... has general term an =", options:["(1/2)ⁿ","(−1)ⁿ⁻¹(1/2)ⁿ","(1/2)ⁿ⁻¹","(−1)ⁿ(1/2)ⁿ"], correct:1 },
+      { subject:"Mathématiques", q:"(log₃27)(log₄16) = ", options:["1/6","2/3","6","5"], correct:3 },
+      { subject:"Mathématiques", q:"The minimum value of the function y = cos5x + 4 is:", options:["5","3","4","2"], correct:1 },
+      { subject:"Mathématiques", q:"If the parabola y=ax² passes through the point (1,2), then a =", options:["−1/2","2","1/2","1"], correct:1 },
+      { subject:"Mathématiques", q:"Which of the following lines is perpendicular to the line −2x+y−2=0?", options:["2x+y−2=0","x+2y−2=0","x+y−2=0","−x+2y−2=0"], correct:1 },
+      { subject:"Mathématiques", q:"Given cos α = −1/2, α∈(π/2, π), the value of sin(α/2) is:", options:["1/2","−√3/2","√3/2","−1/2"], correct:2 },
+      { subject:"Mathématiques", q:"cos 75° = ", options:["−(√6+√2)/4","(√2−√6)/4","(√6+√2)/4","(√6−√2)/4"], correct:3 },
+      { subject:"Mathématiques", q:"If y=f(x) has domain (−1,0), the domain of y=f(x²−1) is:", options:["[−1,1]","(−1,1)","(−1,0)∪(0,1)","(−1,0)"], correct:2 },
+      { subject:"Mathématiques", q:"If cos α = −7/25, and π/2<α<π, then cos(α/2) =", options:["−4/5","4/5","3/5","−3/5"], correct:2 },
+      { subject:"Mathématiques", q:"Which of the following equations is correct?", options:["cos(π/2+α) = sin α","sin(π/2+α) = cos α","cos(π+α) = cos α","sin(π+α) = sin α"], correct:1 },
+      { subject:"Mathématiques", q:"The minimum positive period of y = 2tan(3x+π/4) is:", options:["π/3","2π","π/4","π"], correct:0 },
+      { subject:"Mathématiques", q:"An ellipse C is centered at the origin with foci on the y-axis, focal length 4, eccentricity 2/3. The equation of C is:", options:["x²/9+y²/5=1","x²/8+y²/12=1","x²/5+y²/9=1","x²/12+y²/8=1"], correct:2 },
+      { subject:"Mathématiques", q:"If {an} satisfies an=(−1)ⁿ·2·a_{n−1} (n≥2) and a1=1/3, then a4 =", options:["−16/3","−8/3","16/3","8/3"], correct:1 },
+      { subject:"Mathématiques", q:"The domain of y = 1/lg|x−5| is:", options:["(−∞,4)∪(4,5)∪(5,6)∪(6,+∞)","(−∞,4)∪(4,+∞)","(−∞,5)∪(5,6)∪(6,+∞)","(−∞,5)∪(5,+∞)"], correct:0 },
+      { subject:"Mathématiques", q:"An ellipse C shares foci with x²/4+y²/9=1, and its minor axis has length 4√5. The equation of C is:", options:["x²/20+y²/25=1","x²/25+y²/20=1","x²/20+y²/45=1","x²/80+y²/85=1"], correct:0 },
+      { subject:"Mathématiques", q:"ABCD is a square, E is the midpoint of CD. Given AB=a⃗ and AD=b⃗, then BE⃗ =", options:["a⃗ − (1/2)b⃗","b⃗ − (1/2)a⃗","a⃗ + (1/2)b⃗","b⃗ + (1/2)a⃗"], correct:1 },
+      { subject:"Mathématiques", q:"For geometric sequence {an} with sum of first n terms Sn, given 2Sn=3a_{n+1}−3, then Sn =", options:["(3/2)(5/3)ⁿ − 3/2","(2/3)(5/3)ⁿ − 2/3","(3/2)(3/5)ⁿ − 3/2","(2/3)(3/5)ⁿ − 2/3"], correct:0 },
+      { subject:"Mathématiques", q:"If a complex number z satisfies (z−2i)(2−i)=5, then z =", options:["2 + 3i","2 − 3i","3 − 2i","3 + 2i"], correct:0 },
+      { subject:"Mathématiques", q:"If the sum of the first n terms of {an} is Sn=(2/3)an+1/3, the general term an =", options:["(1/2)ⁿ⁻¹","(−2)ⁿ⁻¹","(−2)ⁿ","−(1/2)ⁿ⁻¹"], correct:1 },
+      { subject:"Mathématiques", q:"A bag has 12 balls: red, black, yellow, green. P(red)=1/3. P(yellow or green)=5/12. P(black or yellow)=5/12. The probabilities of yellow, black, and green respectively are:", options:["1/6, 1/4, 1/4","1/3, 1/4, 1/6","1/4, 1/5, 1/6","1/5, 1/4, 1/6"], correct:0 }
+    ]
+  }
+];
+
+/* =====================================================================
+   MOTEUR — ne pas modifier sauf besoin spécifique
+   ===================================================================== */
+
+let currentLesson = null;
+let currentExam = null;
+let currentQ = 0;
+let answers = [];
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const map = {home:'home', 'lesson-list':'lessons','lesson-detail':'lessons','exam-list':'exams','exam-runner':'exams','exam-result':'exams'};
+  const navBtn = document.querySelector(`.nav-item[data-view="${map[id]}"]`);
+  if(navBtn) navBtn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function buildSidebar(){
+  const navLessons = document.getElementById('nav-lessons');
+  navLessons.innerHTML = `<button class="nav-item" data-view="lessons" onclick="showView('lesson-list')"><span class="n">—</span>Toutes les leçons</button>`;
+  const navExams = document.getElementById('nav-exams');
+  navExams.innerHTML = `<button class="nav-item" data-view="exams" onclick="showView('exam-list')"><span class="n">—</span>Tous les examens</button>`;
+  document.querySelector('.nav-item[data-view="home"]').addEventListener('click', ()=>showView('home'));
+}
+
+function buildHome(){
+  document.getElementById('stat-lessons').textContent = LESSONS.length;
+  document.getElementById('stat-exams').textContent = EXAMS.length;
+  const subjects = [...new Set(LESSONS.map(l=>l.subject))];
+  const grid = document.getElementById('home-tracks');
+  grid.innerHTML = subjects.map(s=>{
+    const count = LESSONS.filter(l=>l.subject===s).length;
+    return `<div class="track-card" onclick="showView('lesson-list')">
+      <h3>${s}</h3>
+      <p>${count} leçon${count>1?'s':''} disponible${count>1?'s':''}</p>
+    </div>`;
+  }).join('') + `<div class="track-card" onclick="showView('exam-list')">
+      <h3>Examens blancs</h3>
+      <p>${EXAMS.length} examen${EXAMS.length>1?'s':''} chronométré${EXAMS.length>1?'s':''}</p>
+    </div>`;
+}
+
+function buildLessonList(){
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = LESSONS.map((l,i)=>`
+    <div class="lesson-row" onclick="openLesson('${l.id}')">
+      <div class="lrow-left">
+        <span class="lrow-num">${String(i+1).padStart(2,'0')}</span>
+        <div>
+          <div class="lrow-title">${l.title}</div>
+          <span class="subject-tag" style="margin-top:4px;">${l.subject}</span>
+        </div>
+      </div>
+      <span class="lrow-meta">${l.minutes} min</span>
+    </div>
+  `).join('');
+}
+
+function openLesson(id){
+  currentLesson = LESSONS.find(l=>l.id===id);
+  const box = document.getElementById('lesson-detail');
+  box.innerHTML = `
+    <span class="subject-tag">${currentLesson.subject}</span>
+    <h2>${currentLesson.title}</h2>
+    <p class="lesson-kicker">${currentLesson.minutes} min de lecture</p>
+    <div class="lesson-content">${currentLesson.html}</div>
+  `;
+  showView('lesson-detail');
+}
+
+function buildExamList(){
+  const list = document.getElementById('exam-list');
+  list.innerHTML = EXAMS.map(e=>`
+    <div class="exam-card">
+      <div>
+        <h3>${e.title}</h3>
+        <p>${e.description} · Chronométré : ${e.duration} min</p>
+      </div>
+      <button class="btn" onclick="startExam('${e.id}')">Commencer</button>
+    </div>
+  `).join('');
+}
+
+let examTimerInterval = null;
+let examSecondsLeft = 0;
+
+function startExam(id){
+  currentExam = EXAMS.find(e=>e.id===id);
+  currentQ = 0;
+  answers = new Array(currentExam.questions.length).fill(null);
+  examSecondsLeft = currentExam.duration * 60;
+  clearInterval(examTimerInterval);
+  examTimerInterval = setInterval(tickTimer, 1000);
+  renderQuestion();
+  showView('exam-runner');
+}
+
+function tickTimer(){
+  examSecondsLeft--;
+  const el = document.getElementById('quiz-timer');
+  if(el){
+    const m = Math.floor(examSecondsLeft/60);
+    const s = examSecondsLeft%60;
+    el.textContent = `${m}:${String(s).padStart(2,'0')}`;
+    el.classList.toggle('low', examSecondsLeft <= 60);
+  }
+  if(examSecondsLeft <= 0){
+    clearInterval(examTimerInterval);
+    showResult();
+  }
+}
+
+function renderQuestion(){
+  const total = currentExam.questions.length;
+  const q = currentExam.questions[currentQ];
+  const pct = ((currentQ)/total)*100;
+  const m = Math.floor(examSecondsLeft/60);
+  const s = examSecondsLeft%60;
+  const box = document.getElementById('exam-runner');
+  box.innerHTML = `
+    <div class="quiz-head">
+      <p class="eyebrow" style="margin:0;">${currentExam.title}</p>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span class="quiz-progress">Question ${currentQ+1} / ${total}</span>
+        <span class="quiz-timer ${examSecondsLeft<=60?'low':''}" id="quiz-timer">${m}:${String(s).padStart(2,'0')}</span>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <p class="q-subject">${q.subject}</p>
+    <p class="q-text">${q.q}</p>
+    <div class="options" id="options"></div>
+    <div class="quiz-nav">
+      <button class="btn ghost" id="btn-prev" onclick="prevQ()" ${currentQ===0?'disabled':''}>Précédent</button>
+      <button class="btn" id="btn-next" onclick="nextQ()" disabled>${currentQ===total-1?'Terminer':'Suivant'}</button>
+    </div>
+  `;
+  const opts = document.getElementById('options');
+  const letters = ['A','B','C','D','E'];
+  opts.innerHTML = q.options.map((o,i)=>`
+    <button class="opt" data-i="${i}" onclick="selectOpt(${i})">
+      <span class="k">${letters[i]}</span><span>${o}</span>
+    </button>
+  `).join('');
+  if(answers[currentQ] !== null){
+    markSelected(answers[currentQ]);
+    document.getElementById('btn-next').disabled = false;
+  }
+}
+
+function selectOpt(i){
+  answers[currentQ] = i;
+  markSelected(i);
+  document.getElementById('btn-next').disabled = false;
+}
+
+function markSelected(i){
+  const q = currentExam.questions[currentQ];
+  document.querySelectorAll('.opt').forEach(btn=>{
+    const idx = parseInt(btn.dataset.i);
+    btn.disabled = true;
+    if(idx === q.correct) btn.classList.add('correct');
+    else if(idx === i) btn.classList.add('incorrect');
+  });
+}
+
+function nextQ(){
+  if(currentQ < currentExam.questions.length - 1){
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+function prevQ(){
+  if(currentQ > 0){
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+function showResult(){
+  clearInterval(examTimerInterval);
+  const total = currentExam.questions.length;
+  let score = 0;
+  const rows = currentExam.questions.map((q,i)=>{
+    const ok = answers[i] === q.correct;
+    if(ok) score++;
+    return `<div class="result-row">
+      <span class="${ok?'ok':'no'}">${ok?'✓':'✗'}</span>
+      <span>${q.subject} — ${q.q}</span>
+    </div>`;
+  }).join('');
+  const pct = Math.round((score/total)*100);
+  document.getElementById('exam-result').innerHTML = `
+    <div class="result-box">
+      <p class="eyebrow">${currentExam.title} — résultat</p>
+      <div class="result-score">${score} / ${total}</div>
+      <p class="result-label">${pct}% de bonnes réponses</p>
+      <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;">
+        <button class="btn ghost" onclick="showView('exam-list')">Retour aux examens</button>
+        <button class="btn" onclick="startExam('${currentExam.id}')">Recommencer</button>
+      </div>
+      <div class="result-detail">${rows}</div>
+    </div>
+  `;
+  showView('exam-result');
+}
+
+/* ---- init ---- */
+// ===== Chargement des leçons depuis Google Sheet (optionnel) =====
+// 1. Crée un Google Sheet avec ces colonnes exactement (première ligne = en-têtes) :
+//    Matiere | Titre | Minutes | Intro | Points | Exemple | ErreursFrequentes
+//    - "Points" : mets plusieurs points séparés par le caractère |
+//      ex: Vitesse = distance/temps|Force F = m x a|Poids P = m x g
+// 2. Fichier > Partager > Publier sur le web > format CSV > copie le lien
+// 3. Colle ce lien ci-dessous à la place du texte entre guillemets
+const LESSONS_SHEET_CSV_URL = "COLLE_ICI_LE_LIEN_CSV_DE_TON_GOOGLE_SHEET";
+
+function lessonHtmlFromRow(row){
+  const points = (row.Points || '').split('|').map(p=>p.trim()).filter(Boolean);
+  let html = `<h4>Ce qu'il faut savoir</h4><p>${row.Intro || ''}</p>`;
+  if(points.length) html += `<ul>${points.map(p=>`<li>${p}</li>`).join('')}</ul>`;
+  if(row.Exemple) html += `<div class="example-box"><b>Exemple type :</b> ${row.Exemple}</div>`;
+  if(row.ErreursFrequentes) html += `<h4>Erreurs fréquentes</h4><p>${row.ErreursFrequentes}</p>`;
+  return html;
+}
+
+function loadLessonsFromSheet(){
+  if(!LESSONS_SHEET_CSV_URL || LESSONS_SHEET_CSV_URL.indexOf('COLLE_ICI') !== -1) return;
+  Papa.parse(LESSONS_SHEET_CSV_URL, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results){
+      const rows = (results.data || []).filter(r => r.Titre && r.Titre.trim());
+      if(!rows.length) return; // Sheet vide ou mal configuré : on garde les leçons par défaut
+      LESSONS = rows.map((row, i) => ({
+        id: `sheet-${i+1}`,
+        subject: row.Matiere || 'Général',
+        title: row.Titre,
+        minutes: parseInt(row.Minutes, 10) || 10,
+        html: lessonHtmlFromRow(row)
+      }));
+      buildHome();
+      buildLessonList();
+    },
+    error: function(){
+      // En cas d'erreur réseau ou de lien invalide, la plateforme garde les leçons par défaut
+    }
+  });
+}
+
+buildSidebar();
+buildHome();
+buildLessonList();
+buildExamList();
+loadLessonsFromSheet();
+</script>
+</body>
+</html>
